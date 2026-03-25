@@ -1,0 +1,29 @@
+{
+  "name": "fitzone-tracker",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000f\u0000i\u0000t\u0000z\u0000o\u0000n\u0000e\u0000-\u0000t\u0000r\u0000a\u0000c\u0000k\u0000e\u0000r\u0000\r\u0000 \u0000",
+  "main": "index.js",
+  "scripts": {
+  "test": "jest"
+},
+"jest": {
+  "rootDir": ".",
+  "testEnvironment": "node",
+  "testMatch": ["**/*.test.js"]
+},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skb399/fitzone-tracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/skb399/fitzone-tracker/issues"
+  },
+  "homepage": "https://github.com/skb399/fitzone-tracker#readme",
+  "devDependencies": {
+    "jest": "^30.3.0"
+  }
+}
