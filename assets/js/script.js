@@ -11,8 +11,21 @@ function handleMenuClick(sectionId) {
         document.getElementById("workout-plans-section").classList.remove("d-none");
         document.getElementById("menu-section").classList.add("d-none");
     } else if (sectionId === "record-workout") {
-        document.getElementById("record-workout-section").classList.remove("d-none");
-        document.getElementById("menu-section").classList.add("d-none");
+
+        // Hide whichever previous section is visible before showing the record workout section, when user is clicking record workout on the workout plans section.
+        const menuSection = document.getElementById("menu-section");
+        const recordSection = document.getElementById("record-workout-section");
+        const plansSection = document.getElementById("workout-plans-section");
+
+        recordSection.classList.remove("d-none");
+
+        if (menuSection) {
+            menuSection.classList.add("d-none");
+        }
+
+        if (plansSection) {
+            plansSection.classList.add("d-none");
+        }
     } else if (sectionId === "workout-tips") {
         document.getElementById("workout-tips-section").classList.remove("d-none");
         document.getElementById("menu-section").classList.add("d-none");
@@ -21,6 +34,8 @@ function handleMenuClick(sectionId) {
         document.getElementById("menu-section").classList.remove("d-none");
     }
 };
+
+
 
 // Menu button event listeners
 // These call the handleMenuClick function with the correct section ID when a menu button is clicked.
@@ -113,6 +128,8 @@ function workoutPlansEventListeners() {
     const pushButton = document.getElementById("push-workout-btn");
     const pullButton = document.getElementById("pull-workout-btn");
     const legsButton = document.getElementById("legs-workout-btn");
+    const recordFromPlansBtn = document.getElementById("workout-plans-record-btn");
+
 
     if (pushButton) {
         pushButton.addEventListener("click", () => {
@@ -128,6 +145,14 @@ function workoutPlansEventListeners() {
     if (legsButton) {
         legsButton.addEventListener("click", () => {
             displayWorkoutPlan("legs");
+        });
+    }
+
+    // This event listener listens for a click on the record workout button in the workout plans section, on click it calls the handleMenuClick function with the correct record-workout section ID
+    //  to show the record workout section and hide the workout plans section.
+    if (recordFromPlansBtn) {
+        recordFromPlansBtn.addEventListener("click", () => {
+            handleMenuClick("record-workout");
         });
     }
 };

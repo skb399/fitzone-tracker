@@ -213,3 +213,23 @@ test("Clicking return to menu button shows menu section", () => {
     expect(plans.classList.contains("d-none")).toBe(true);
 })
 
+test("Clicking record workout button on workout plans section shows record workout section", () => {
+    // I created a fake DOM structure for the test as it wasn't working with the actual HTML file. 
+    // This allows me to test the function in isolation.
+    document.body.innerHTML = `
+       <div id="workout-plans-section"></div>
+        <div id="record-workout-section" class="d-none"></div>
+        <button id="workout-plans-record-btn"></button>
+    `;
+
+    // Act: call the function to simulate clicking the record workout button 
+    handleMenuClick("record-workout");
+
+    // Assert: workout plans section should now be hidden and record workout section should be visible
+    const plans = document.getElementById("workout-plans-section");
+    const record = document.getElementById("record-workout-section");
+
+    // Expecting - the workout plans section should be hidden (d-none class added) and the record workout section should be visible (d-none class removed)
+    expect(plans.classList.contains("d-none")).toBe(true);
+    expect(record.classList.contains("d-none")).toBe(false);
+})
