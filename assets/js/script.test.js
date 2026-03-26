@@ -5,7 +5,7 @@
 //The above comment tells Jest to use the jsdom environment, which creates a fake browser environment for testing DOM manipulation and events.
 
 //The below code imports the functions from script.js for testing.
-const { handleMenuClick } = require("./script");
+const { handleMenuClick, getWorkoutPlans, workoutPlans, displayWorkoutPlan } = require("./script");
 
 //MENU BUTTON TESTS
 // These tests check that the handleMenuClick function shows the correct section and hides the menu section when a menu button is clicked.
@@ -73,3 +73,65 @@ test("handleMenuClick shows workout tips section", () => {
     const section = document.getElementById("workout-tips-section");
     expect(section.classList.contains("d-none")).toBe(false);
 })
+
+//WORKOUT PLANS SECTION TESTS
+
+// this test checks if the getWorkoutPlans function returns the correct workout plan for the "push" workout type
+test("returns push workout plan when type is push", () => {
+    //Calls the function
+    const result = getWorkoutPlans("push");
+    //Expected result
+    expect(result).toEqual(workoutPlans.push);
+});
+
+// this test checks if the getWorkoutPlans function returns the correct workout plan for the "pull" workout type
+test("returns pull workout plan when type is pull", () => {
+    const result = getWorkoutPlans("pull");
+    expect(result).toEqual(workoutPlans.pull);
+});
+
+// this test checks if the getWorkoutPlans function returns the correct workout plan for the "legs" workout type
+test("returns legs workout plan when type is legs", () => {
+    const result = getWorkoutPlans("legs");
+    expect(result).toEqual(workoutPlans.legs);
+});
+
+// this test checks if the getWorkoutPlans function returns an empty array when an invalid workout type is provided
+test("returns empty array when workout type is invalid", () => {
+    const result = getWorkoutPlans("cardio");
+    expect(result).toEqual([]);
+});
+
+// this test checks if the displayWorkoutPlan function updates the workout-plan-display div with the data from the push workout plan
+test("updates the workout-plan-display div with the push plan when push is detected", () => {
+    // Created fake DOM structure for the test as it wasn't working with the actual HTML file.
+    document.body.innerHTML = `
+    <div id="workout-plan-display"> </div>
+    `;
+
+    // Act: call the function with "push" 
+    displayWorkoutPlan("push");
+    const display = document.getElementById("workout-plan-display");
+
+    // Assert: the content of the display should contain the first exercise in the push workout plan
+    expect(display.textContent).toContain("Bench Press");
+
+});
+
+// this test checks if the displayWorkoutPlan handles invalid type
+test("updates the workout-plan-display with error message when handling invalid type", () => {
+    // Created fake DOM structure for the test as it wasn't working with the actual HTML file.
+    document.body.innerHTML = `
+    <div id="workout-plan-display"> </div>
+    `;
+
+    // Act: call the function with "abs" 
+    displayWorkoutPlan("abs");
+    const display = document.getElementById("workout-plan-display");
+
+    // Assert: the content of the display should contain the error message
+    expect(display.textContent).toBe("No workout found");
+
+
+});
+
