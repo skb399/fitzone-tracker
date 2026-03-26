@@ -125,10 +125,69 @@
             </div>
         </section>
 
+
         <!-- RECORD WORKOUT SECTION -->
         <!-- d-none class used to hide section until user clicks "Record Workout" button -->
         <section id="record-workout-section" class="py-5 d-none">
+            <div class="container">
+                <div class="row justify-content-center text-center mb-4">
+                    <div class="col-12 col-lg-8">
+                        <h2>Record Workout</h2>
+                        <p class="lead">
+                            Enter your workout details below to calculate your performance.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-10 col-lg-6">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <form id="workout-form">
+                                    <div class="mb-3">
+                                        <label for="exercise-name" class="form-label">Exercise</label>
+                                        <input type="text" id="exercise-name" class="form-control"
+                                            placeholder="e.g. Bench Press" required>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="sets" class="form-label">Sets</label>
+                                        <input type="number" id="sets" class="form-control" min="1" required>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="reps" class="form-label">Reps</label>
+                                        <input type="number" id="reps" class="form-control" min="1" required>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="weight" class="form-label">Weight</label>
+                                        <input type="number" id="weight" class="form-control" min="1" required>
+                                    </div>
+
+                                    <!-- Validation / error message area -->
+                                    <div id="form-error-message" class="mb-3"></div>
+
+                                    <div class="d-grid gap-2">
+                                        <button id="calculate-workout-btn" class="btn btn-dark" type="submit">
+                                            Calculate Performance
+                                        </button>
+                                        <button id="reset-workout-btn" class="btn btn-outline-dark" type="reset">
+                                            Reset
+                                        </button>
+                                        <button id="return-menu-from-record-btn" class="btn btn-secondary"
+                                            type="button">
+                                            Return to Menu
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
+
 
         <!-- RESULTS SECTION -->
         <section id="results-section" class="py-5 d-none">
