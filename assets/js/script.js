@@ -16,6 +16,9 @@ function handleMenuClick(sectionId) {
     } else if (sectionId === "workout-tips") {
         document.getElementById("workout-tips-section").classList.remove("d-none");
         document.getElementById("menu-section").classList.add("d-none");
+    } else if (sectionId === "return-menu-from-workout-plans") {
+        document.getElementById("workout-plans-section").classList.add("d-none");
+        document.getElementById("menu-section").classList.remove("d-none");
     }
 };
 
@@ -24,6 +27,7 @@ function handleMenuClick(sectionId) {
 const workoutPlansBtn = document.getElementById("menu-workout-plans-btn");
 const recordWorkoutBtn = document.getElementById("menu-record-workout-btn");
 const workoutTipsBtn = document.getElementById("menu-workout-tips-btn");
+const returnMenuFromWorkoutPlansBtn = document.getElementById("workout-plans-back-btn");
 
 if (workoutPlansBtn) {
     workoutPlansBtn.addEventListener("click", function () {
@@ -42,6 +46,15 @@ if (workoutTipsBtn) {
         handleMenuClick("workout-tips");
     });
 }
+if (returnMenuFromWorkoutPlansBtn) {
+    returnMenuFromWorkoutPlansBtn.addEventListener("click", function () {
+        // Show menu section and hide workout plans section by reusing the handleMenuClick function with the correct section ID.
+        handleMenuClick("return-menu-from-workout-plans");
+    });
+}
+
+
+
 
 
 //WORKOUT PLANS PAGE FUNCTIONALITY
@@ -93,7 +106,7 @@ function displayWorkoutPlan(type) {
 }
 
 
-// Workout plans section event listener
+// Workout plans section event listeners
 
 /**This function prepares the event listeners for the workout plans section.*/
 function workoutPlansEventListeners() {

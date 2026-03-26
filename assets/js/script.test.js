@@ -153,6 +153,8 @@ test("clicking push button displays push workout", () => {
     expect(display.innerHTML).toContain("Bench Press");
 });
 
+//WORKOUT PLANS SECTION EVENT LISTENERS
+
 // this test checks if clicking the pull workout button displays the pull workout plan in the workout plan display
 test("clicking pull button displays pull workout", () => {
     // Created fake DOM structure for the test as it wasn't working with the actual HTML file.
@@ -188,3 +190,26 @@ test("clicking legs button displays legs workout", () => {
     const display = document.getElementById("workout-plan-display");
     expect(display.innerHTML).toContain("Squats");
 });
+
+
+test("Clicking return to menu button shows menu section", () => {
+    // I created a fake DOM structure for the test as it wasn't working with the actual HTML file. 
+    // This allows me to test the function in isolation.
+    document.body.innerHTML = `
+        <div id="menu-section" class="d-none"></div>
+<div id="workout-plans-section"></div>
+<button id="workout-plans-back-btn"></button>
+    `;
+
+    // Act: call the function to simulate clicking the return to menu button 
+    handleMenuClick("return-menu-from-workout-plans");
+
+    // Assert: menu section should now be visible and workout plans section should be hidden
+    const menu = document.getElementById("menu-section");
+    const plans = document.getElementById("workout-plans-section");
+
+    // Expecting - the menu should now be visible (d-none class removed) and the workout plans section should be hidden (d-none class added)
+    expect(menu.classList.contains("d-none")).toBe(false);
+    expect(plans.classList.contains("d-none")).toBe(true);
+})
+
