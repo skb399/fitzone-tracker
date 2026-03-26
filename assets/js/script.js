@@ -77,25 +77,59 @@ function getWorkoutPlans(type) {
 }
 
 
-
+/**This function displays the workout plan for the correct workout type (push, pull, or legs) in the workout plan display.*/
 function displayWorkoutPlan(type) {
+    // Calls the getWorkoutPlans function to retrieve the workout plan for the specified type
     const plans = getWorkoutPlans(type);
+    // Gets the workout plan display element from the DOM
     const display = document.getElementById("workout-plan-display");
-
+    // If no workout plan is found for the specific type, display a message indicating that no workout was found. Else, display the workout plan.
     if (plans.length === 0) {
         display.innerHTML = "No workout found";
     } else {
-        // .join(" ") converts the array into a single string, adding a space and line break between each exercise
+        // .join(" ") converts the array into a single string, adding a space and line break between each exercise.
         display.innerHTML = plans.join("<br>");
     }
 }
 
 
-// This code exports functions to script.test.js for testing.
+// Workout plans section event listener
+
+/**This function prepares the event listeners for the workout plans section.*/
+function workoutPlansEventListeners() {
+    const pushButton = document.getElementById("push-workout-btn");
+    const pullButton = document.getElementById("pull-workout-btn");
+    const legsButton = document.getElementById("legs-workout-btn");
+
+    if (pushButton) {
+        pushButton.addEventListener("click", () => {
+            displayWorkoutPlan("push");
+        });
+    }
+
+    if (pullButton) {
+        pullButton.addEventListener("click", () => {
+            displayWorkoutPlan("pull");
+        });
+    }
+    if (legsButton) {
+        legsButton.addEventListener("click", () => {
+            displayWorkoutPlan("legs");
+        });
+    }
+};
+
+// This event listener waits for the DOM content to be fully loaded before setting up the event listeners for the workout plans section.
+document.addEventListener("DOMContentLoaded", () => {
+    workoutPlansEventListeners();
+});
+
+// This code exports functions to script.test.js for testing. I had to add this code as the app wasn't working in the browser without it, and 
+// I needed to export the functions for testing in script.test.js.
 if (typeof module !== "undefined") {
-    module.exports = { handleMenuClick, getWorkoutPlans, workoutPlans, displayWorkoutPlan };
+    module.exports = { handleMenuClick, getWorkoutPlans, workoutPlans, displayWorkoutPlan, workoutPlansEventListeners };
 }
 
 // This code exports functions to script.test.js for testing.
-module.exports = { handleMenuClick, getWorkoutPlans, workoutPlans, displayWorkoutPlan };
+module.exports = { handleMenuClick, getWorkoutPlans, workoutPlans, displayWorkoutPlan, workoutPlansEventListeners };
 
