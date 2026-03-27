@@ -162,15 +162,19 @@ document.addEventListener("DOMContentLoaded", () => {
     workoutPlansEventListeners();
 });
 
+/**This function calculates the total volume (performance) of a workout based on the number 
+// of sets, reps, and weight lifted. Volume is calculated as sets x reps x weight. */
+function calculateVolume(sets, reps, weight) {
+    return sets * reps * weight;
 
-
+}
 
 // This code exports functions to script.test.js for testing. I had to add this code as the app wasn't working in the browser without it, and 
 // I needed to export the functions for testing in script.test.js.
 if (typeof module !== "undefined") {
-    module.exports = { handleMenuClick, getWorkoutPlans, workoutPlans, displayWorkoutPlan, workoutPlansEventListeners };
+    module.exports = { handleMenuClick, getWorkoutPlans, workoutPlans, displayWorkoutPlan, workoutPlansEventListeners, calculateVolume };
 }
 
 // This code exports functions to script.test.js for testing.
-module.exports = { handleMenuClick, getWorkoutPlans, workoutPlans, displayWorkoutPlan, workoutPlansEventListeners };
+module.exports = { handleMenuClick, getWorkoutPlans, workoutPlans, displayWorkoutPlan, workoutPlansEventListeners, calculateVolume };
 
