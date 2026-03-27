@@ -257,3 +257,13 @@ test("getPerformanceFeedback function returns low effort feedback when volume is
     // Assert: feedback should indicate low effort
     expect(result).toBe("Low effort");
 });
+
+test("getPerformanceFeedback function returns moderate effort feedback when volume is below threshold", () => {
+    // Fake DOM not needed as i'm testing pure logic, not how the function interacts with the DOM.
+
+    // Act: call the function to simulate calculating performance feedback for a moderate volume
+    const result = getPerformanceFeedback(1200);
+
+    // Assert: feedback should indicate moderate effort
+    expect(result).toBe("Moderate effort");
+});
