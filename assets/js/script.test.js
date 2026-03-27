@@ -247,3 +247,8 @@ test("calculateVolume function correctly calculates volume for performance feedb
     expect(result).toBe(1000); // Example expected volume for 5 sets, 10 reps, and 20 weight
 
 })
+
+test("getPerformanceFeedback function returns low effort feedback when volume is below threshold", () => {
+    const result = getPerformanceFeedback(100);
+    expect(result).toBe("Low effort");
+});
