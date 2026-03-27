@@ -173,6 +173,8 @@ function calculateVolume(sets, reps, weight) {
 function getPerformanceFeedback(volume) {
     if (volume < 1000) {
         return "Low effort";
+    } if (1000 <= volume && volume < 3000) {
+        return "Moderate effort";
     }
 }
 
