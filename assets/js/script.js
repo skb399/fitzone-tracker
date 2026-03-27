@@ -169,13 +169,19 @@ function calculateVolume(sets, reps, weight) {
     return volume;
 }
 
+/**This function provides feedback based on the total volume of a workout. */
+function getPerformanceFeedback(volume) {
+    if (volume < 1000) {
+        return "Low effort";
+    }
+}
 
 // This code exports functions to script.test.js for testing. I had to add this code as the app wasn't working in the browser without it, and 
 // I needed to export the functions for testing in script.test.js.
 if (typeof module !== "undefined") {
-    module.exports = { handleMenuClick, getWorkoutPlans, workoutPlans, displayWorkoutPlan, workoutPlansEventListeners, calculateVolume };
+    module.exports = { handleMenuClick, getWorkoutPlans, workoutPlans, displayWorkoutPlan, workoutPlansEventListeners, calculateVolume, getPerformanceFeedback };
 }
 
 // This code exports functions to script.test.js for testing.
-module.exports = { handleMenuClick, getWorkoutPlans, workoutPlans, displayWorkoutPlan, workoutPlansEventListeners, calculateVolume };
+module.exports = { handleMenuClick, getWorkoutPlans, workoutPlans, displayWorkoutPlan, workoutPlansEventListeners, calculateVolume, getPerformanceFeedback };
 

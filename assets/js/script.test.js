@@ -5,7 +5,7 @@
 //The above comment tells Jest to use the jsdom environment, which creates a fake browser environment for testing DOM manipulation and events.
 
 //The below code imports the functions from script.js for testing.
-const { handleMenuClick, getWorkoutPlans, workoutPlans, displayWorkoutPlan, workoutPlansEventListeners, calculateVolume } = require("./script");
+const { handleMenuClick, getWorkoutPlans, workoutPlans, displayWorkoutPlan, workoutPlansEventListeners, calculateVolume, getPerformanceFeedback } = require("./script");
 
 //MENU BUTTON TESTS
 // These tests check that the handleMenuClick function shows the correct section and hides the menu section when a menu button is clicked.
@@ -249,6 +249,11 @@ test("calculateVolume function correctly calculates volume for performance feedb
 })
 
 test("getPerformanceFeedback function returns low effort feedback when volume is below threshold", () => {
+    // Fake DOM not needed as i'm testing pure logic, not how the function interacts with the DOM.
+
+    // Act: call the function to simulate calculating performance feedback for a low volume
     const result = getPerformanceFeedback(100);
+
+    // Assert: feedback should indicate low effort
     expect(result).toBe("Low effort");
 });
