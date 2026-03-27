@@ -5,7 +5,7 @@
 //The above comment tells Jest to use the jsdom environment, which creates a fake browser environment for testing DOM manipulation and events.
 
 //The below code imports the functions from script.js for testing.
-const { handleMenuClick, getWorkoutPlans, workoutPlans, displayWorkoutPlan, workoutPlansEventListeners } = require("./script");
+const { handleMenuClick, getWorkoutPlans, workoutPlans, displayWorkoutPlan, workoutPlansEventListeners, calculateVolume } = require("./script");
 
 //MENU BUTTON TESTS
 // These tests check that the handleMenuClick function shows the correct section and hides the menu section when a menu button is clicked.
@@ -191,7 +191,6 @@ test("clicking legs button displays legs workout", () => {
     expect(display.innerHTML).toContain("Squats");
 });
 
-
 test("Clicking return to menu button shows menu section", () => {
     // I created a fake DOM structure for the test as it wasn't working with the actual HTML file. 
     // This allows me to test the function in isolation.
@@ -232,4 +231,19 @@ test("Clicking record workout button on workout plans section shows record worko
     // Expecting - the workout plans section should be hidden (d-none class added) and the record workout section should be visible (d-none class removed)
     expect(plans.classList.contains("d-none")).toBe(true);
     expect(record.classList.contains("d-none")).toBe(false);
+})
+
+test("calculateVolume function correctly calculates volume for performance feedback to user", () => {
+    // Fake DOM not needed as i'm testing pure math/logic, not how the function interacts with the DOM.
+
+
+    // Act: call the function to simulate entering sets, reps, and weight and calculating volume
+    const sets = 5;
+    const reps = 10;
+    const weight = 20;
+    const result = calculateVolume(sets, reps, weight);
+
+    // Assert: calculated volume should be correct (sets x reps x weight)
+    expect(result).toBe(1000); // Example expected volume for 5 sets, 10 reps, and 20 weight
+
 })
