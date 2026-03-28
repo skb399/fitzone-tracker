@@ -171,10 +171,15 @@ function calculateVolume(sets, reps, weight) {
 
 /**This function provides feedback based on the total volume of a workout. */
 function getPerformanceFeedback(volume) {
-    if (volume < 1000) {
+    const lowThreshold = 1000;
+    const moderateThreshold = 3000;
+
+    if (volume < lowThreshold) {
         return "Low effort";
-    } if (1000 <= volume && volume < 3000) {
+    } else if (volume < moderateThreshold) {
         return "Moderate effort";
+    } else {
+        return "High effort";
     }
 }
 
