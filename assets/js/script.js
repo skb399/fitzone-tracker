@@ -183,15 +183,27 @@ function getPerformanceFeedback(volume) {
     }
 }
 
-/**This function processes the workout input and calculates the total volume, and interact with the DOM to provide feedback. */
-processWorkoutInput(sets, reps, weight)
+/**This function processes the workout input and calculates the total volume, and provides feedback based on the volume. */
+function processWorkoutInput(sets, reps, weight) {
+    // Calculate the total volume of the workout using the calculateVolume function
+    const volume = calculateVolume(sets, reps, weight);
+
+    // Get performance feedback based on the calculated volume using the getPerformanceFeedback function
+    const feedback = getPerformanceFeedback(volume);
+
+    // Then returns and object with the calculated volume and feedback, which can be used to update the DOM.
+    return {
+        volume,
+        feedback
+    };
+}
 
 // This code exports functions to script.test.js for testing. I had to add this code as the app wasn't working in the browser without it, and 
 // I needed to export the functions for testing in script.test.js.
 if (typeof module !== "undefined") {
-    module.exports = { handleMenuClick, getWorkoutPlans, workoutPlans, displayWorkoutPlan, workoutPlansEventListeners, calculateVolume, getPerformanceFeedback };
+    module.exports = { handleMenuClick, getWorkoutPlans, workoutPlans, displayWorkoutPlan, workoutPlansEventListeners, calculateVolume, getPerformanceFeedback, processWorkoutInput };
 }
 
 // This code exports functions to script.test.js for testing.
-module.exports = { handleMenuClick, getWorkoutPlans, workoutPlans, displayWorkoutPlan, workoutPlansEventListeners, calculateVolume, getPerformanceFeedback };
+module.exports = { handleMenuClick, getWorkoutPlans, workoutPlans, displayWorkoutPlan, workoutPlansEventListeners, calculateVolume, getPerformanceFeedback, processWorkoutInput };
 
