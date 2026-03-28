@@ -183,6 +183,9 @@ function getPerformanceFeedback(volume) {
     }
 }
 
+/**This function processes the workout input and calculates the total volume, and interact with the DOM to provide feedback. */
+processWorkoutInput(sets, reps, weight)
+
 // This code exports functions to script.test.js for testing. I had to add this code as the app wasn't working in the browser without it, and 
 // I needed to export the functions for testing in script.test.js.
 if (typeof module !== "undefined") {

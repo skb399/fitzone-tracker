@@ -277,3 +277,16 @@ test("getPerformanceFeedback function returns high effort feedback when volume i
     // Assert: feedback should indicate high effort
     expect(result).toBe("High effort");
 });
+
+test("processWorkoutInput returns correct volume and feedback", () => {
+    // Fake DOM not needed as i'm testing pure logic, not how the function interacts with the DOM.
+
+    // Act: call the function to simulate calculating performance feedback for a high volume
+    // This should calculate a volume of 1000 and return "Moderate effort"
+    const result = processWorkoutInput(5, 10, 20);
+
+    // Assert: both volume and feedback should indicate moderate effort
+    expect(result.volume).toBe(1000);
+    expect(result.feedback).toBe("Moderate effort");
+});
+
