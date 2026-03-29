@@ -188,10 +188,53 @@
             </div>
         </section>
 
-
         <!-- RESULTS SECTION -->
         <section id="results-section" class="py-5 d-none">
+            <div class="container">
+                <div class="row justify-content-center text-center mb-4">
+                    <div class="col-12 col-lg-8">
+                        <h2>Workout Results</h2>
+                        <p class="lead">
+                            Review your workout volume, performance level, and feedback.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-10 col-lg-6">
+                        <div class="card shadow-sm">
+                            <div class="card-body text-center">
+                                <h3 class="h4 mb-4">Results Summary</h3>
+
+                                <p><strong>Exercise:</strong> <span id="result-exercise">-</span></p>
+                                <p><strong>Total Volume:</strong> <span id="volume-output">0</span></p>
+                                <p><strong>Performance:</strong> <span id="performance-output">-</span></p>
+
+                                <div id="feedback-message" class="alert alert-secondary mt-3" role="alert">
+                                    Your workout feedback will appear here.
+                                </div>
+
+                                <!-- Optional visual feedback image -->
+                                <div class="my-3">
+                                    <img id="feedback-image" src="" alt="Workout performance feedback"
+                                        class="img-fluid rounded d-none">
+                                </div>
+
+                                <div class="d-grid gap-2 mt-4">
+                                    <button id="record-new-workout-btn" class="btn btn-dark" type="button">
+                                        Record New Workout
+                                    </button>
+                                    <button id="return-menu-from-results-btn" class="btn btn-secondary" type="button">
+                                        Return to Menu
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
+
 
         <!-- WORKOUT TIPS SECTION -->
         <section id="workout-tips-section" class="py-5 d-none">

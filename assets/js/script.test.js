@@ -367,3 +367,4 @@ test("processWorkoutInput returns error for text input", () => {
     expect(result.volume).toBe(0);
     expect(result.feedback).toBe("Please enter valid numbers");
 });
+
