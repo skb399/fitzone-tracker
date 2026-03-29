@@ -191,6 +191,11 @@ test("clicking legs button displays legs workout", () => {
     expect(display.innerHTML).toContain("Squats");
 });
 
+// MENU BUTTONS TESTS
+
+// handleMenuClick tests - this function is responsible for showing the correct section and hiding the menu section when a menu button is clicked, so I will test that 
+// it correctly shows and hides the appropriate sections when different menu buttons are clicked to ensure that the navigation between sections of the app is working.
+
 test("Clicking return to menu button shows menu section", () => {
     // I created a fake DOM structure for the test as it wasn't working with the actual HTML file. 
     // This allows me to test the function in isolation.
@@ -233,6 +238,12 @@ test("Clicking record workout button on workout plans section shows record worko
     expect(record.classList.contains("d-none")).toBe(false);
 })
 
+// PERFORMANCE FEEDBACK TESTS
+
+// calculateVolume tests - this function calculates the total volume of a workout based on the sets, reps, and weight input by the user, which is used to provide 
+// performance feedback to the user. I will test that it correctly calculates the volume for different inputs to ensure that the performance feedback is based on 
+// accurate calculations.
+
 test("calculateVolume function correctly calculates volume for performance feedback to user", () => {
     // Fake DOM not needed as i'm testing pure math/logic, not how the function interacts with the DOM.
 
@@ -247,6 +258,9 @@ test("calculateVolume function correctly calculates volume for performance feedb
     expect(result).toBe(1000); // Example expected volume for 5 sets, 10 reps, and 20 weight
 
 })
+
+// getPerformanceFeedback tests - this function provides feedback based on the total volume of a workout, so I will test that it returns the correct 
+// feedback for different volume levels (low, moderate, high) to ensure that the feedback logic is working providing eedback to the user based on their workout performance.
 
 test("getPerformanceFeedback function returns low effort feedback when volume is below threshold", () => {
     // Fake DOM not needed as i'm testing pure logic, not how the function interacts with the DOM.
@@ -278,6 +292,9 @@ test("getPerformanceFeedback function returns high effort feedback when volume i
     expect(result).toBe("High effort");
 });
 
+// processWorkoutInput tests - this function combines the calculateVolume and getPerformanceFeedback functions to process the workout input and return both the 
+// calculated volume and feedback in an object, which can be used to update the DOM with the performance feedback for the user.
+
 test("processWorkoutInput returns correct volume and feedback", () => {
     // Fake DOM not needed as i'm testing pure logic, not how the function interacts with the DOM.
 
@@ -290,3 +307,39 @@ test("processWorkoutInput returns correct volume and feedback", () => {
     expect(result.feedback).toBe("Moderate effort");
 });
 
+test("processWorkoutInput returns high effort feedback for high volume", () => {
+    // Fake DOM not needed as i'm testing pure logic, not how the function interacts with the DOM.
+
+    // Act: call the function to simulate calculating performance feedback for a high volume
+    // This should calculate a volume of 3000 and return "High effort"
+    const result = processWorkoutInput(10, 10, 30);
+
+    // Assert: both volume and feedback should indicate high effort
+    expect(result.volume).toBe(3000);
+    expect(result.feedback).toBe("High effort");
+});
+
+test("processWorkoutInput returns low effort feedback for low volume", () => {
+    // Fake DOM not needed as i'm testing pure logic, not how the function interacts with the DOM.
+
+    // Act: call the function to simulate calculating performance feedback for a low volume
+    // This should calculate a volume of 100 and return "Low effort"
+    const result = processWorkoutInput(1, 10, 10);
+
+    // Assert: both volume and feedback should indicate low effort
+    expect(result.volume).toBe(100);
+    expect(result.feedback).toBe("Low effort");
+});
+
+
+test("processWorkoutInput returns an error for empty input", () => {
+    // Fake DOM not needed as i'm testing pure logic, not how the function interacts with the DOM.
+
+    // Act: call the function to simulate calculating performance feedback with empty input
+    // This should return a volume of 0 and an error message in the feedback
+    const result = processWorkoutInput("", 10, 20);
+
+    // Assert: volume should be 0 and feedback should indicate an error
+    expect(result.volume).toBe(0);
+    expect(result.feedback).toBe("Please enter valid numbers");
+});

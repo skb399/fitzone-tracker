@@ -130,7 +130,9 @@ function workoutPlansEventListeners() {
     const legsButton = document.getElementById("legs-workout-btn");
     const recordFromPlansBtn = document.getElementById("workout-plans-record-btn");
 
+    // These event listeners listen for clicks on the push, pull, and legs workout buttons, and call the displayWorkoutPlan function with the correct workout type to display the corresponding workout plan.
 
+    //if pushButton exists, add an event listener to it that listens for a click event and calls the displayWorkoutPlan function with the argument "push" to display the push workout plan.
     if (pushButton) {
         pushButton.addEventListener("click", () => {
             displayWorkoutPlan("push");
