@@ -389,11 +389,40 @@ test("displayWorkoutResults shows results section and updates result fields", ()
     });
 
     // Assert: results section should be visible and result fields should be updated with the provided data
-    // Expecting - the results section should be visible (d-none class removed), the record workout section should be hidden (d-none class added), and the result fields should be updated with the correct values
+    // Expecting - the results section should be visible (d-none class removed), the record workout section should be hidden 
+    // (d-none class added), and the result fields should be updated with the correct values
     expect(document.getElementById("results-section").classList.contains("d-none")).toBe(false);
     expect(document.getElementById("record-workout-section").classList.contains("d-none")).toBe(true);
     expect(document.getElementById("result-exercise").textContent).toBe("Bench Press");
     expect(document.getElementById("volume-output").textContent).toBe("1000");
     expect(document.getElementById("performance-output").textContent).toBe("Moderate effort");
     expect(document.getElementById("feedback-message").textContent).toBe("Moderate effort");
+});
+
+test("displayWorkoutResults updates and shows the feedback image", () => {
+    // I created a fake DOM structure for the test as it wasn't working with the actual HTML file. 
+    // This allows me to test the function in isolation.
+    document.body.innerHTML = `
+        <section id="record-workout-section"></section>
+        <section id="results-section" class="d-none"></section>
+        <span id="result-exercise">-</span>
+        <span id="volume-output">0</span>
+        <span id="performance-output">-</span>
+        <div id="feedback-message">Your workout feedback will appear here.</div>
+        <img id="feedback-image" class="d-none" src="" alt="Workout performance feedback">
+    `;
+
+    // Act: call the function to simulate displaying workout results with a sample exercise, volume, and feedback 
+    // that should trigger the moderate effort feedback and show the correct image
+    displayWorkoutResults("Bench Press", {
+        volume: 1000,
+        feedback: "Moderate effort"
+    });
+
+    // Assert: feedback image should be updated with the correct src
+    const image = document.getElementById("feedback-image");
+
+    // Expecting - the feedback image should now be visible (d-none class removed) and the src should contain "moderate-effort" based on the feedback provided
+    expect(image.classList.contains("d-none")).toBe(false);
+    expect(image.getAttribute("src")).toContain("moderate-effort");
 });

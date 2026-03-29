@@ -217,13 +217,13 @@ function processWorkoutInput(sets, reps, weight) {
 /** This function displays the workout results in the results section. */
 function displayWorkoutResults(exercise, result) {
 
-    // Hide record workout section
+    // Hide record workout section after submitting workout input.
     document.getElementById("record-workout-section").classList.add("d-none");
 
-    // Show results section
+    // Show results section after submitting workout input.    
     document.getElementById("results-section").classList.remove("d-none");
 
-    // Update result fields
+    // Update result fields in the DOM with the exercise name, calculated volume, and performance feedback based on user's workout input.
     document.getElementById("result-exercise").textContent = exercise;
     document.getElementById("volume-output").textContent = result.volume;
     document.getElementById("performance-output").textContent = result.feedback;
