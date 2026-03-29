@@ -212,12 +212,31 @@ function processWorkoutInput(sets, reps, weight) {
     };
 }
 
+//RESULTS SECTION FUNCTIONALITY
+
+/** This function displays the workout results in the results section. */
+function displayWorkoutResults(exercise, result) {
+
+    // Hide record workout section
+    document.getElementById("record-workout-section").classList.add("d-none");
+
+    // Show results section
+    document.getElementById("results-section").classList.remove("d-none");
+
+    // Update result fields
+    document.getElementById("result-exercise").textContent = exercise;
+    document.getElementById("volume-output").textContent = result.volume;
+    document.getElementById("performance-output").textContent = result.feedback;
+    document.getElementById("feedback-message").textContent = result.feedback;
+}
+
+
 // This code exports functions to script.test.js for testing. I had to add this code as the app wasn't working in the browser without it, and 
 // I needed to export the functions for testing in script.test.js.
 if (typeof module !== "undefined") {
-    module.exports = { handleMenuClick, getWorkoutPlans, workoutPlans, displayWorkoutPlan, workoutPlansEventListeners, calculateVolume, getPerformanceFeedback, processWorkoutInput };
+    module.exports = { handleMenuClick, getWorkoutPlans, workoutPlans, displayWorkoutPlan, workoutPlansEventListeners, calculateVolume, getPerformanceFeedback, processWorkoutInput, displayWorkoutResults };
 }
 
 // This code exports functions to script.test.js for testing.
-module.exports = { handleMenuClick, getWorkoutPlans, workoutPlans, displayWorkoutPlan, workoutPlansEventListeners, calculateVolume, getPerformanceFeedback, processWorkoutInput };
+module.exports = { handleMenuClick, getWorkoutPlans, workoutPlans, displayWorkoutPlan, workoutPlansEventListeners, calculateVolume, getPerformanceFeedback, processWorkoutInput, displayWorkoutResults };
 
