@@ -355,3 +355,15 @@ test("processWorkoutInput returns error for negative input", () => {
     expect(result.volume).toBe(0);
     expect(result.feedback).toBe("Please enter valid numbers");
 });
+
+test("processWorkoutInput returns error for text input", () => {
+    // Fake DOM not needed as i'm testing pure logic, not how the function interacts with the DOM.
+
+    // Act: call the function to simulate calculating performance feedback with text input
+    // This should return a volume of 0 and an error message in the feedback because text values are invalid for sets, reps, and weight
+    const result = processWorkoutInput("abc", 10, 20);
+
+    // Assert: volume should be 0 and feedback should indicate an error
+    expect(result.volume).toBe(0);
+    expect(result.feedback).toBe("Please enter valid numbers");
+});
