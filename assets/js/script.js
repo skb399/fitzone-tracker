@@ -189,7 +189,7 @@ function getPerformanceFeedback(volume) {
 function processWorkoutInput(sets, reps, weight) {
     // This first if statment validates the inputs by checking there are falsy values (empty or invalid inputs). If sets or reps or weight are empty or invalid,
     // it returns a volume of 0 and an error message in the feedback to tell the user needs to enter valid numbers. 
-    if (!sets || !reps || !weight) {
+    if (!sets || !reps || !weight || sets <= 0 || reps <= 0 || weight <= 0) {
         return {
             volume: 0,
             feedback: "Please enter valid numbers"
