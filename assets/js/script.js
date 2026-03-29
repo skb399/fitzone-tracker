@@ -228,6 +228,28 @@ function displayWorkoutResults(exercise, result) {
     document.getElementById("volume-output").textContent = result.volume;
     document.getElementById("performance-output").textContent = result.feedback;
     document.getElementById("feedback-message").textContent = result.feedback;
+
+    // Get the feedback image element from the DOM to update it based on the performance feedback, providing visual feedback to the user 
+    // based on their workout performance. There are different images for low, moderate, and high effort.
+    const image = document.getElementById("feedback-image");
+
+    // This sets the correct src based on the feedback provided in the result object. 
+    let imageSrc = "";
+
+    // Depending on the feedback (low effort, moderate effort, or high effort), the specific src is set.
+    if (result.feedback === "Low effort") {
+        imageSrc = "assets/images/low-effort.webp";
+    } else if (result.feedback === "Moderate effort") {
+        imageSrc = "assets/images/moderate-effort.webp";
+    } else if (result.feedback === "High effort") {
+        imageSrc = "assets/images/high-effort.webp";
+    }
+
+    // Update and show the feedback image - the src is updated based on the feedback, and the d-none class is removed to display the image, 
+    // giving visual feedback to the user based on workout performance.
+    image.setAttribute("src", imageSrc);
+    image.classList.remove("d-none");
+    image.setAttribute("alt", `${result.feedback} workout feedback`);
 }
 
 

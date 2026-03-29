@@ -374,14 +374,14 @@ test("displayWorkoutResults shows results section and updates result fields", ()
     // I created a fake DOM structure for the test as it wasn't working with the actual HTML file. 
     // This allows me to test the function in isolation.
     document.body.innerHTML = `
-        <section id="record-workout-section" class=""></section>
+        <section id="record-workout-section"></section>
         <section id="results-section" class="d-none"></section>
         <span id="result-exercise">-</span>
         <span id="volume-output">0</span>
         <span id="performance-output">-</span>
         <div id="feedback-message">Your workout feedback will appear here.</div>
-    `;
-
+        <img id="feedback-image" class="d-none" src="" alt="Workout performance feedback">
+    // `;
     // Act: call the function to simulate displaying workout results with a sample exercise, volume, and feedback
     displayWorkoutResults("Bench Press", {
         volume: 1000,
