@@ -227,7 +227,27 @@ function displayWorkoutResults(exercise, result) {
     document.getElementById("result-exercise").textContent = exercise;
     document.getElementById("volume-output").textContent = result.volume;
     document.getElementById("performance-output").textContent = result.feedback;
-    document.getElementById("feedback-message").textContent = result.feedback;
+
+    // Get the feedback message element from the DOM to update it based on the performance feedback, providing written feedback to the user based on their workout performance. 
+    // The text and colour of the feedback message changes based on whether the performance was low effort, moderate effort, or high effort.
+    const feedbackElement = document.getElementById("feedback-message");
+
+    // This code sets the text content of the feedback message to the feedback provided in the result object, giving written feedback to the user based on workout performance.
+    feedbackElement.textContent = result.feedback;
+
+    // This code first removes any existing alert classes from the feedback message element to reset its styling, 
+    // ensuring that only the correct colour class is applied based on the current feedback.
+    feedbackElement.classList.remove("alert-secondary", "alert-danger", "alert-warning", "alert-success");
+
+    // This code adds the correct alert class to the feedback message element based on the feedback provided in the result object,
+    //  changing the colour of the feedback message to visually indicate low effort (red), moderate effort (yellow), or high effort (green) performance.
+    if (result.feedback === "Low effort") {
+        feedbackElement.classList.add("alert-danger");
+    } else if (result.feedback === "Moderate effort") {
+        feedbackElement.classList.add("alert-warning");
+    } else if (result.feedback === "High effort") {
+        feedbackElement.classList.add("alert-success");
+    }
 
     // Get the feedback image element from the DOM to update it based on the performance feedback, providing visual feedback to the user 
     // based on their workout performance. There are different images for low, moderate, and high effort.
@@ -238,11 +258,11 @@ function displayWorkoutResults(exercise, result) {
 
     // Depending on the feedback (low effort, moderate effort, or high effort), the specific src is set.
     if (result.feedback === "Low effort") {
-        imageSrc = "assets/images/low-effort.webp";
+        imageSrc = "assets/images/feedback-low-effort.webp";
     } else if (result.feedback === "Moderate effort") {
-        imageSrc = "assets/images/moderate-effort.webp";
+        imageSrc = "assets/images/feedback-moderate-effort.webp";
     } else if (result.feedback === "High effort") {
-        imageSrc = "assets/images/high-effort.webp";
+        imageSrc = "assets/images/feedback-high-effort.webp";
     }
 
     // Update and show the feedback image - the src is updated based on the feedback, and the d-none class is removed to display the image, 
@@ -272,9 +292,6 @@ function handleWorkoutCalculation() {
 if (typeof module !== "undefined") {
     module.exports = { handleMenuClick, getWorkoutPlans, workoutPlans, displayWorkoutPlan, workoutPlansEventListeners, calculateVolume, getPerformanceFeedback, processWorkoutInput, displayWorkoutResults, handleWorkoutCalculation };
 }
-
-// This code exports functions to script.test.js for testing.
-module.exports = { handleMenuClick, getWorkoutPlans, workoutPlans, displayWorkoutPlan, workoutPlansEventListeners, calculateVolume, getPerformanceFeedback, processWorkoutInput, displayWorkoutResults, handleWorkoutCalculation };
 
 // JQUERIES - These are placed at the bottom of the js file as they involve DOM manipulation, the DOM needs to be fully loaded before 
 // the jQuery code can interact with the elements, otherwise it would not work as the elements would not be found.
