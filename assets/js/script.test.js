@@ -434,11 +434,15 @@ test("handleWorkoutCalculation processes inputs and displays workout results", (
     // I created a fake DOM structure for the test as it wasn't working with the actual HTML file. 
     // This allows me to test the function in isolation.
     document.body.innerHTML = `
-        <input id="sets" value="3">
-        <input id="reps" value="10">
-        <input id="weight" value="50">
+        <section id="record-workout-section">
+            <input id="exercise-name" value="Bench Press">
+            <input id="sets" value="3">
+            <input id="reps" value="10">
+            <input id="weight" value="50">
+        </section>
 
         <section id="results-section" class="d-none">
+            <span id="result-exercise">-</span>
             <span id="volume-output">0</span>
             <span id="performance-output">-</span>
             <div id="feedback-message">Your workout feedback will appear here.</div>
@@ -446,11 +450,12 @@ test("handleWorkoutCalculation processes inputs and displays workout results", (
         </section>
     `;
 
-    // Act: Call the function that handles the workout calculation, this reads the input values, processes them to calculate volume and feedback, 
-    // and then updates the DOM with the results.
+    // Act: call the function to simulate processing workout input and displaying results
     handleWorkoutCalculation();
 
-    // Assert: check that the results section is now visible and the result fields are updated with the expected values based on the input
+    // Assert: results section should be visible and result fields should be updated based on the input values (3 sets x 10 reps x 50 weight = 1500 volume, 
+    // which should give "Moderate effort" feedback)
+    expect(document.getElementById("result-exercise").textContent).toBe("Bench Press");
     expect(document.getElementById("volume-output").textContent).toBe("1500");
     expect(document.getElementById("performance-output").textContent).toBe("Moderate effort");
     expect(document.getElementById("results-section").classList.contains("d-none")).toBe(false);

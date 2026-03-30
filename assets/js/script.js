@@ -252,7 +252,15 @@ function displayWorkoutResults(exercise, result) {
     image.setAttribute("alt", `${result.feedback} workout feedback`);
 }
 
+/** This function handles the workout calculation by retrieving user input, processing it, and displaying the results. */
 function handleWorkoutCalculation() {
+    const exercise = document.getElementById("exercise-name").value;
+    const sets = document.getElementById("sets").value;
+    const reps = document.getElementById("reps").value;
+    const weight = document.getElementById("weight").value;
+
+    const result = processWorkoutInput(sets, reps, weight);
+    displayWorkoutResults(exercise, result);
 }
 
 // This code exports functions to script.test.js for testing. I had to add this code as the app wasn't working in the browser without it, and 
