@@ -460,3 +460,4 @@ test("handleWorkoutCalculation processes inputs and displays workout results", (
     expect(document.getElementById("performance-output").textContent).toBe("Moderate effort");
     expect(document.getElementById("results-section").classList.contains("d-none")).toBe(false);
 });
+

@@ -254,12 +254,16 @@ function displayWorkoutResults(exercise, result) {
 
 /** This function handles the workout calculation by retrieving user input, processing it, and displaying the results. */
 function handleWorkoutCalculation() {
+    // Retrieve user input values for exercise name, sets, reps, and weight from the DOM.
     const exercise = document.getElementById("exercise-name").value;
     const sets = document.getElementById("sets").value;
     const reps = document.getElementById("reps").value;
     const weight = document.getElementById("weight").value;
 
+    // Process the workout input using the processWorkoutInput function to calculate volume and get feedback 
     const result = processWorkoutInput(sets, reps, weight);
+
+    // Display the workout results in the DOM using the displayWorkoutResults function, this shows the exercise name and the results.
     displayWorkoutResults(exercise, result);
 }
 
@@ -272,3 +276,20 @@ if (typeof module !== "undefined") {
 // This code exports functions to script.test.js for testing.
 module.exports = { handleMenuClick, getWorkoutPlans, workoutPlans, displayWorkoutPlan, workoutPlansEventListeners, calculateVolume, getPerformanceFeedback, processWorkoutInput, displayWorkoutResults, handleWorkoutCalculation };
 
+// JQUERIES - These are placed at the bottom of the js file as they involve DOM manipulation, the DOM needs to be fully loaded before 
+// the jQuery code can interact with the elements, otherwise it would not work as the elements would not be found.
+
+// This code checks if jQuery is loaded before trying to use it, preventing errors if jQuery is not available. 
+if (typeof $ !== "undefined") {
+    // Document ready function so that the DOM is fully loaded before attaching event listeners. This is required for jQuery to work correctly, 
+    // as it needs to interact with DOM elements.
+    $(document).ready(function () {
+        // This code uses jQuery to listen for the submit event on the workout form with the ID "workout-form". 
+        $("#workout-form").on("submit", function (e) {
+            // When the form is submitted e.preventDefault() is used to prevent the default form submission behavior (it would usually refresh the page).
+            e.preventDefault();
+            // Then the handleWorkoutCalculation function is called to process the workout input and display the results without refreshing the page.
+            handleWorkoutCalculation();
+        });
+    });
+}
