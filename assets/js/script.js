@@ -252,13 +252,15 @@ function displayWorkoutResults(exercise, result) {
     image.setAttribute("alt", `${result.feedback} workout feedback`);
 }
 
+function handleWorkoutCalculation() {
+}
 
 // This code exports functions to script.test.js for testing. I had to add this code as the app wasn't working in the browser without it, and 
 // I needed to export the functions for testing in script.test.js.
 if (typeof module !== "undefined") {
-    module.exports = { handleMenuClick, getWorkoutPlans, workoutPlans, displayWorkoutPlan, workoutPlansEventListeners, calculateVolume, getPerformanceFeedback, processWorkoutInput, displayWorkoutResults };
+    module.exports = { handleMenuClick, getWorkoutPlans, workoutPlans, displayWorkoutPlan, workoutPlansEventListeners, calculateVolume, getPerformanceFeedback, processWorkoutInput, displayWorkoutResults, handleWorkoutCalculation };
 }
 
 // This code exports functions to script.test.js for testing.
-module.exports = { handleMenuClick, getWorkoutPlans, workoutPlans, displayWorkoutPlan, workoutPlansEventListeners, calculateVolume, getPerformanceFeedback, processWorkoutInput, displayWorkoutResults };
+module.exports = { handleMenuClick, getWorkoutPlans, workoutPlans, displayWorkoutPlan, workoutPlansEventListeners, calculateVolume, getPerformanceFeedback, processWorkoutInput, displayWorkoutResults, handleWorkoutCalculation };
 

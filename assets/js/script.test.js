@@ -5,7 +5,10 @@
 //The above comment tells Jest to use the jsdom environment, which creates a fake browser environment for testing DOM manipulation and events.
 
 //The below code imports the functions from script.js for testing.
-const { handleMenuClick, getWorkoutPlans, workoutPlans, displayWorkoutPlan, workoutPlansEventListeners, calculateVolume, getPerformanceFeedback, processWorkoutInput, displayWorkoutResults } = require("./script");
+const { handleMenuClick, getWorkoutPlans, workoutPlans, displayWorkoutPlan, workoutPlansEventListeners, calculateVolume, getPerformanceFeedback, processWorkoutInput, displayWorkoutResults, handleWorkoutCalculation } = require("./script");
+
+// Import the whole module as an object so jest.spyOn can watch functions on it
+const script = require("./script");
 
 //MENU BUTTON TESTS
 // These tests check that the handleMenuClick function shows the correct section and hides the menu section when a menu button is clicked.
@@ -425,4 +428,30 @@ test("displayWorkoutResults updates and shows the feedback image", () => {
     // Expecting - the feedback image should now be visible (d-none class removed) and the src should contain "moderate-effort" based on the feedback provided
     expect(image.classList.contains("d-none")).toBe(false);
     expect(image.getAttribute("src")).toContain("moderate-effort");
+});
+
+test("handleWorkoutCalculation processes inputs and displays workout results", () => {
+    // I created a fake DOM structure for the test as it wasn't working with the actual HTML file. 
+    // This allows me to test the function in isolation.
+    document.body.innerHTML = `
+        <input id="sets" value="3">
+        <input id="reps" value="10">
+        <input id="weight" value="50">
+
+        <section id="results-section" class="d-none">
+            <span id="volume-output">0</span>
+            <span id="performance-output">-</span>
+            <div id="feedback-message">Your workout feedback will appear here.</div>
+            <img id="feedback-image" src="" class="d-none">
+        </section>
+    `;
+
+    // Act: Call the function that handles the workout calculation, this reads the input values, processes them to calculate volume and feedback, 
+    // and then updates the DOM with the results.
+    handleWorkoutCalculation();
+
+    // Assert: check that the results section is now visible and the result fields are updated with the expected values based on the input
+    expect(document.getElementById("volume-output").textContent).toBe("1500");
+    expect(document.getElementById("performance-output").textContent).toBe("Moderate effort");
+    expect(document.getElementById("results-section").classList.contains("d-none")).toBe(false);
 });

@@ -1,0 +1,35 @@
+[33m6173c48[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m Add failing test for handleWorkoutCalculation
+[33m86170d1[m displayWorkoutResults feedback image (TDD green)
+[33maedae76[m test: displayWorkoutResults feedback image (TDD red)
+[33m756fac3[m displayWorkoutResults updates DOM (TDD green)
+[33m0198985[m test: displayWorkoutResults updates results section (TDD red)
+[33m8d6c9c1[m add html for results section
+[33md19d1da[m refactor: processWorkoutInput validation (TDD refactor)
+[33m8ee88e4[m test: processWorkoutInput text input (TDD green)
+[33m1ed7dc7[m test: processWorkoutInput text input (TDD red)
+[33m577eee0[m test: processWorkoutInput negative input (TDD green)
+[33mcd52fe3[m test: processWorkoutInput negative input (TDD red)
+[33m2cd06f9[m processWorkoutInput handles invalid empty input (TDD green)
+[33m9ad314f[m test: processWorkoutInput invalid input (TDD red)
+[33m23bb5db[m Implement processWorkoutInput integrating volume and feedback logic (TDD - Green)
+[33mca33214[m Add failing test for processWorkoutInput integration (TDD - Red)
+[33m2770250[m Refactor getPerformanceFeedback logic and improve readability (TDD - Refactor)
+[33m0d0518e[m Add failing test for high getPerformanceFeedback threshold (TDD - Red)
+[33md87b4f6[m Implement getPerformanceFeedback for moderate effort threshold (TDD - Green)
+[33m39b1e8c[m Add failing test for moderate getPerformanceFeedback threshold (TDD - Red)
+[33ma399e8d[m Implement getPerformanceFeedback for low effort threshold (TDD - Green)
+[33m11f2b1c[m Add failing test for getPerformanceFeedback (TDD - Red)
+[33ma1b7cbf[m Passing test for calculateVolume function (TDD - Green)
+[33m28fbe79[m Add failing test for calculateVolume (TDD - Red)
+[33m6f653de[m add html for record workout section
+[33me4c5ff9[m add record workout navigation from workout plans section tdd and event listeners
+[33m2c85bd3[m tdd and event listener for return to menu (workout plans) section
+[33m2c60ec3[m feat: add workout plan button event listeners and tdd for push pull and legs buttons
+[33mb2e81ee[m test displayWorkoutPlan with line breaks and error handling (TDD)
+[33m623032d[m add workout plan section, add section HTML place holders for all sections, TDD menu buttons, add menu button event listeners
+[33mc0d3594[m add workout plan section, add section HTML place holders for all sections, TDD menu buttons, add menu button event listeners
+[33m8fbf0c8[m add workout plan section, add section HTML place holders for all sections, TDD menu buttons
+[33mede4ea7[m add workout plan section html boiler plate, add npm test package
+[33mf9c1585[m add html boiler plate, add Menu section to HTML
+[33m7e295a6[m first commit, basic file structure
+[33m334c437[m first commit
