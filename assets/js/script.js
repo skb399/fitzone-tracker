@@ -1,7 +1,9 @@
 // script.js
 
+// ------------
+// MENU BUTTONS
+// ------------
 
-//MENU PAGE BUTTON FUNCTIONALITY
 /**
  * This function handles the click events for the menu buttons and displays the correct sections while hiding the menu section.
  * I've decided not to use JQUERY for this function as it's a simple function and I can use JQUERY for something more complex later on.
@@ -12,20 +14,24 @@ function handleMenuClick(sectionId) {
         document.getElementById("menu-section").classList.add("d-none");
     } else if (sectionId === "record-workout") {
 
-        // Hide whichever previous section is visible before showing the record workout section, when user is clicking record workout on the workout plans section.
-        const menuSection = document.getElementById("menu-section");
+        //// Show record workout section and hide other visible sections
         const recordSection = document.getElementById("record-workout-section");
         const plansSection = document.getElementById("workout-plans-section");
 
         recordSection.classList.remove("d-none");
 
+        // Check if the menu section is currently visible, if it is, hide it. 
         if (menuSection) {
             menuSection.classList.add("d-none");
         }
 
+        // Check if the workout plans section is currently visible, if it is, hide it.
         if (plansSection) {
             plansSection.classList.add("d-none");
         }
+
+        // This else if statement is for when the user clicks the record workout button in the workout plans section, it hides the workout plans section and shows the 
+        // record workout section.
     } else if (sectionId === "workout-tips") {
         document.getElementById("workout-tips-section").classList.remove("d-none");
         document.getElementById("menu-section").classList.add("d-none");
@@ -37,7 +43,10 @@ function handleMenuClick(sectionId) {
 
 
 
-// Menu button event listeners
+// ------------------------------
+// MENU BUTTON EVENT LISTENERS
+// ------------------------------
+
 // These call the handleMenuClick function with the correct section ID when a menu button is clicked.
 const workoutPlansBtn = document.getElementById("menu-workout-plans-btn");
 const recordWorkoutBtn = document.getElementById("menu-record-workout-btn");
@@ -68,11 +77,33 @@ if (returnMenuFromWorkoutPlansBtn) {
     });
 }
 
+// This code adds an event listener to the record new workout button in the results section. When clicked, it hides the results 
+// section and shows the record workout section, allowing the user to return to the record workout section and enter a 
+// new workout after viewing their results without returning to the menu.
+const recordNewWorkoutBtn = document.getElementById("record-new-workout-btn");
+
+if (recordNewWorkoutBtn) {
+    recordNewWorkoutBtn.addEventListener("click", function () {
+
+        // Hide the results section.
+        document.getElementById("results-section").classList.add("d-none");
+
+        // Reuse the handleMenuClick function with the correct section ID to show the record workout section and hide the results section.
+        handleMenuClick("record-workout");
+
+        // Reset the form so the user can enter a new workout.
+        document.getElementById("workout-form").reset();
+
+        // Hide the previous feedback image until a new result is calculated
+        document.getElementById("feedback-image").classList.add("d-none");
+    });
+}
 
 
 
-
-//WORKOUT PLANS PAGE FUNCTIONALITY
+// -------------------------------
+// WORKOUT PLANS PAGE FUNCTIONALITY
+// -------------------------------
 
 /** This object contains sample workout plans for each workout type, which can be displayed in the workout plan section of the FitZone Tracker application. */
 const workoutPlans = {
@@ -120,8 +151,9 @@ function displayWorkoutPlan(type) {
     }
 }
 
-
-// Workout plans section event listeners
+// -------------------------------------
+// WORKOUT PLANS SECTION EVENT LISTENERS
+// -------------------------------------
 
 /**This function prepares the event listeners for the workout plans section.*/
 function workoutPlansEventListeners() {
@@ -212,7 +244,9 @@ function processWorkoutInput(sets, reps, weight) {
     };
 }
 
-//RESULTS SECTION FUNCTIONALITY
+// ----------------------------
+// RESULTS SECTION FUNCTIONALITY
+// ----------------------------
 
 /** This function displays the workout results in the results section. */
 function displayWorkoutResults(exercise, result) {
