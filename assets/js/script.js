@@ -17,6 +17,7 @@ function handleMenuClick(sectionId) {
         //// Show record workout section and hide other visible sections
         const recordSection = document.getElementById("record-workout-section");
         const plansSection = document.getElementById("workout-plans-section");
+        const menuSection = document.getElementById("menu-section");
 
         recordSection.classList.remove("d-none");
 
