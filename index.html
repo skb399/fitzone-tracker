@@ -235,9 +235,45 @@
             </div>
         </section>
 
-
         <!-- WORKOUT TIPS SECTION -->
         <section id="workout-tips-section" class="py-5 d-none">
+            <div class="container">
+                <div class="row justify-content-center text-center mb-4">
+                    <div class="col-12 col-lg-8">
+                        <h2>Workout Tips</h2>
+                        <p class="lead">
+                            Click the button below to fetch a random workout tip from the API.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-10 col-lg-6">
+                        <div class="card shadow-sm">
+                            <div class="card-body text-center">
+                                <button id="get-workout-tip-btn" class="btn btn-dark mb-3" type="button">
+                                    Get Workout Tip
+                                </button>
+
+                                <div id="tip-result-box" class="border rounded p-4 mb-3">
+                                    Click the button to get a workout tip.
+                                </div>
+
+                                <div id="tip-error-message" class="text-danger mb-3"></div>
+
+                                <div class="d-grid gap-2">
+                                    <button id="get-another-tip-btn" class="btn btn-outline-dark" type="button">
+                                        Get Another Tip
+                                    </button>
+                                    <button id="return-menu-from-tips-btn" class="btn btn-secondary" type="button">
+                                        Return to Menu
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- Footer -->
