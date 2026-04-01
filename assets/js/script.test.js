@@ -461,3 +461,30 @@ test("handleWorkoutCalculation processes inputs and displays workout results", (
     expect(document.getElementById("results-section").classList.contains("d-none")).toBe(false);
 });
 
+test("handleMenuClick shows workout tips section and hides other sections", () => {
+    // I created a fake DOM structure for the test as it wasn't working with the actual HTML file. 
+    // This allows me to test the function in isolation.
+    document.body.innerHTML = `
+        <section id="menu-section" class=""></section>
+        <section id="workout-plans-section" class=""></section>
+        <section id="record-workout-section" class=""></section>
+        <section id="workout-tips-section" class="d-none"></section>
+    `;
+
+    // Act: call the function to simulate clicking the workout tips button
+    handleMenuClick("workout-tips");
+
+    // Assert: workout tips section should be visible and other sections should be hidden
+    const tipsSection = document.getElementById("workout-tips-section");
+    expect(tipsSection.classList.contains("d-none")).toBe(false);
+
+    // Assert: all other sections should be hidden (d-none class added)
+    const menuSection = document.getElementById("menu-section");
+    const workoutPlansSection = document.getElementById("workout-plans-section");
+    const recordWorkoutSection = document.getElementById("record-workout-section");
+
+    // Expect- the workout tips section should be visible (d-none class removed) and all other sections should be hidden (d-none class added)
+    expect(menuSection.classList.contains("d-none")).toBe(true);
+    expect(workoutPlansSection.classList.contains("d-none")).toBe(true);
+    expect(recordWorkoutSection.classList.contains("d-none")).toBe(true);
+});
