@@ -30,15 +30,20 @@ function handleMenuClick(sectionId) {
         if (plansSection) {
             plansSection.classList.add("d-none");
         }
+    }
 
-        // This else if statement is for when the user clicks the record workout button in the workout plans section, it hides the workout plans section and shows the 
-        // record workout section.
-    } else if (sectionId === "workout-tips") {
-        document.getElementById("workout-tips-section").classList.remove("d-none");
-        document.getElementById("menu-section").classList.add("d-none");
-    } else if (sectionId === "return-menu-from-workout-plans") {
+    // This else if statement shows the menu section and hides the workout plans section 
+    // when the back button in the workout plans section is clicked.
+    else if (sectionId === "return-menu-from-workout-plans") {
         document.getElementById("workout-plans-section").classList.add("d-none");
         document.getElementById("menu-section").classList.remove("d-none");
+    }
+
+    //This else if statement shows the workout tips section and hides the menu section 
+    // when the workout tips button is clicked.
+    else if (sectionId === "workout-tips") {
+        document.getElementById("menu-section").classList.add("d-none");
+        document.getElementById("workout-tips-section").classList.remove("d-none");
     }
 };
 
@@ -53,6 +58,8 @@ const workoutPlansBtn = document.getElementById("menu-workout-plans-btn");
 const recordWorkoutBtn = document.getElementById("menu-record-workout-btn");
 const workoutTipsBtn = document.getElementById("menu-workout-tips-btn");
 const returnMenuFromWorkoutPlansBtn = document.getElementById("workout-plans-back-btn");
+// This variable is used in the handleMenuClick function to show the workout tips section when the workout tips button is clicked.
+const workoutTipsSection = document.getElementById("workout-tips-section");
 
 if (workoutPlansBtn) {
     workoutPlansBtn.addEventListener("click", function () {

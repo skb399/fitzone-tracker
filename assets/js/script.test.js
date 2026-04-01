@@ -65,8 +65,10 @@ test("handleMenuClick shows workout tips section", () => {
     // I created a fake DOM structure for the test as it wasn't working with the actual HTML file. 
     // This allows me to test the function in isolation.
     document.body.innerHTML = `
-        <div id="menu-section"></div>
-        <div id="workout-tips-section" class="d-none"></div>
+        <section id="menu-section" class=""></section>
+        <section id="workout-plans-section" class=""></section>
+        <section id="record-workout-section" class=""></section>
+        <section id="workout-tips-section" class="d-none"></section>
     `;
 
     // Act: call the function
