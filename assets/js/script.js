@@ -42,8 +42,28 @@ function handleMenuClick(sectionId) {
     //This else if statement shows the workout tips section and hides the menu section 
     // when the workout tips button is clicked.
     else if (sectionId === "workout-tips") {
-        document.getElementById("menu-section").classList.add("d-none");
-        document.getElementById("workout-tips-section").classList.remove("d-none");
+
+        const tipsSection = document.getElementById("workout-tips-section");
+        const plansSection = document.getElementById("workout-plans-section");
+        const recordSection = document.getElementById("record-workout-section");
+        const menuSection = document.getElementById("menu-section");
+
+        // Show workout tips section and hide other visible sections
+        tipsSection.classList.remove("d-none");
+
+        // Hide menu section, workout plans section, and record workout section if they are currently visible. 
+        // So only the workout tips section is shown when the workout tips button is clicked.
+        if (menuSection) {
+            menuSection.classList.add("d-none");
+        }
+
+        if (plansSection) {
+            plansSection.classList.add("d-none");
+        }
+
+        if (recordSection) {
+            recordSection.classList.add("d-none");
+        }
     }
 };
 
