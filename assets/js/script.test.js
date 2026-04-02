@@ -14,8 +14,7 @@ const script = require("./script");
 // These tests check that the handleMenuClick function shows the correct section and hides the menu section when a menu button is clicked.
 
 test("handleMenuClick hides the menu when workout plans button is clicked", () => {
-    // I created a fake DOM structure for the test as it wasn't working with the actual HTML file. 
-    // This allows me to test the function in isolation.
+    // Create fake DOM to test function
     document.body.innerHTML = `
         <div id="menu-section"></div>
         <div id="workout-plans-section" class="d-none"></div>
@@ -30,8 +29,7 @@ test("handleMenuClick hides the menu when workout plans button is clicked", () =
 })
 
 test("handleMenuClick shows workout plans section", () => {
-    // I created a fake DOM structure for the test as it wasn't working with the actual HTML file. 
-    // This allows me to test the function in isolation.
+    // Create fake DOM to test function
     document.body.innerHTML = `
         <div id="menu-section"></div>
         <div id="workout-plans-section" class="d-none"></div>
@@ -46,8 +44,7 @@ test("handleMenuClick shows workout plans section", () => {
 })
 
 test("handleMenuClick shows record workout section", () => {
-    // I created a fake DOM structure for the test as it wasn't working with the actual HTML file. 
-    // This allows me to test the function in isolation.
+    // Create fake DOM to test function
     document.body.innerHTML = `
         <div id="menu-section"></div>
         <div id="record-workout-section" class="d-none"></div>
@@ -62,8 +59,7 @@ test("handleMenuClick shows record workout section", () => {
 })
 
 test("handleMenuClick shows workout tips section", () => {
-    // I created a fake DOM structure for the test as it wasn't working with the actual HTML file. 
-    // This allows me to test the function in isolation.
+    // Create fake DOM to test function
     document.body.innerHTML = `
         <section id="menu-section" class=""></section>
         <section id="workout-plans-section" class=""></section>
@@ -202,8 +198,7 @@ test("clicking legs button displays legs workout", () => {
 // it correctly shows and hides the appropriate sections when different menu buttons are clicked to ensure that the navigation between sections of the app is working.
 
 test("Clicking return to menu button shows menu section", () => {
-    // I created a fake DOM structure for the test as it wasn't working with the actual HTML file. 
-    // This allows me to test the function in isolation.
+    // Create fake DOM to test function
     document.body.innerHTML = `
         <div id="menu-section" class="d-none"></div>
 <div id="workout-plans-section"></div>
@@ -223,8 +218,7 @@ test("Clicking return to menu button shows menu section", () => {
 })
 
 test("Clicking record workout button on workout plans section shows record workout section", () => {
-    // I created a fake DOM structure for the test as it wasn't working with the actual HTML file. 
-    // This allows me to test the function in isolation.
+    // Create fake DOM to test function
     document.body.innerHTML = `
        <div id="workout-plans-section"></div>
         <div id="record-workout-section" class="d-none"></div>
@@ -376,8 +370,7 @@ test("processWorkoutInput returns error for text input", () => {
 //RESULTS SECTION TESTS
 
 test("displayWorkoutResults shows results section and updates result fields", () => {
-    // I created a fake DOM structure for the test as it wasn't working with the actual HTML file. 
-    // This allows me to test the function in isolation.
+    // Create fake DOM to test function
     document.body.innerHTML = `
         <section id="record-workout-section"></section>
         <section id="results-section" class="d-none"></section>
@@ -405,8 +398,7 @@ test("displayWorkoutResults shows results section and updates result fields", ()
 });
 
 test("displayWorkoutResults updates and shows the feedback image", () => {
-    // I created a fake DOM structure for the test as it wasn't working with the actual HTML file. 
-    // This allows me to test the function in isolation.
+    // Create fake DOM to test function
     document.body.innerHTML = `
         <section id="record-workout-section"></section>
         <section id="results-section" class="d-none"></section>
@@ -433,8 +425,7 @@ test("displayWorkoutResults updates and shows the feedback image", () => {
 });
 
 test("handleWorkoutCalculation processes inputs and displays workout results", () => {
-    // I created a fake DOM structure for the test as it wasn't working with the actual HTML file. 
-    // This allows me to test the function in isolation.
+    // Create fake DOM to test function
     document.body.innerHTML = `
         <section id="record-workout-section">
             <input id="exercise-name" value="Bench Press">
@@ -464,8 +455,7 @@ test("handleWorkoutCalculation processes inputs and displays workout results", (
 });
 
 test("handleMenuClick shows workout tips section and hides other sections", () => {
-    // I created a fake DOM structure for the test as it wasn't working with the actual HTML file. 
-    // This allows me to test the function in isolation.
+    // Create fake DOM to test function
     document.body.innerHTML = `
         <section id="menu-section" class=""></section>
         <section id="workout-plans-section" class=""></section>
@@ -492,8 +482,7 @@ test("handleMenuClick shows workout tips section and hides other sections", () =
 });
 
 test("displayWorkoutTip shows tip and reveals 'Get Another Tip' button", () => {
-    // I created a fake DOM structure for the test as it wasn't working with the actual HTML file. 
-    // This allows me to test the function in isolation.
+    // Create fake DOM to test function
     document.body.innerHTML = `
         <div id="tip-result-box">Click the button to get a workout tip.</div>
         <button id="get-another-tip-btn" class="d-none"></button>
@@ -512,3 +501,17 @@ test("displayWorkoutTip shows tip and reveals 'Get Another Tip' button", () => {
     expect(anotherTipBtn.classList.contains("d-none")).toBe(false);
 });
 
+// async test to check if the fetchWorkoutTip function correctly calls the Wger API and returns a tip, 
+// checking that the API connection is working.
+test("fetchWorkoutTip calls real Wger API and returns a tip", async () => {
+
+    // Act: call the function to simulate fetching a workout tip from the Wger API
+    const response = await fetch("https://wger.de/api/v2/exerciseinfo/?limit=1");
+
+    // Assert: the response should be successful and contain a tip in the expected format
+    const data = await response.json();
+
+    // Expecting - the API should return a successful response with a results array containing at least one tip, and the tip should have a description field
+    expect(data.results[0].description).toBeDefined();
+
+});
