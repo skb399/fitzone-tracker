@@ -385,9 +385,15 @@ function displayWorkoutTip(tip) {
 }
 
 /** This function fetches a workout tip from an API and displays it using the displayWorkoutTip function. */
-function fetchWorkoutTip() {
+//async function needed as it has to wait for the response from the API before it can display the tip
+async function fetchWorkoutTip() {
+    // await is used to wait for the fetch request to complete
+    const response = await fetch("https://wger.de/api/v2/exerciseinfo/?limit=1");
+    // This code checks if the response has been retrieved and converted to JSON.
+    const data = await response.json();
+    // This code returns the description of the first result in the API response if available, to be displayed as a workout tip.
+    return data.results[0].description;
 }
-
 
 // This code exports functions to script.test.js for testing. I had to add this code as the app wasn't working in the browser without it, and 
 // I needed to export the functions for testing in script.test.js.
