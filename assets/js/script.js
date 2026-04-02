@@ -349,11 +349,6 @@ function handleWorkoutCalculation() {
     displayWorkoutResults(exercise, result);
 }
 
-// This code exports functions to script.test.js for testing. I had to add this code as the app wasn't working in the browser without it, and 
-// I needed to export the functions for testing in script.test.js.
-if (typeof module !== "undefined") {
-    module.exports = { handleMenuClick, getWorkoutPlans, workoutPlans, displayWorkoutPlan, workoutPlansEventListeners, calculateVolume, getPerformanceFeedback, processWorkoutInput, displayWorkoutResults, handleWorkoutCalculation };
-}
 
 // JQUERIES - These are placed at the bottom of the js file as they involve DOM manipulation, the DOM needs to be fully loaded before 
 // the jQuery code can interact with the elements, otherwise it would not work as the elements would not be found.
@@ -371,4 +366,27 @@ if (typeof $ !== "undefined") {
             handleWorkoutCalculation();
         });
     });
+}
+
+/** This function displays a workout tip in the tip result box and reveals the "Get Another Tip" button. */
+function displayWorkoutTip(tip) {
+    // Get the tip result box and "Get Another Tip" button elements from the DOM to update them with the
+    //  new tip and display the button.
+    const resultBox = document.getElementById("tip-result-box");
+    const anotherTipBtn = document.getElementById("get-another-tip-btn");
+
+    // This code updates the text content of the tip result box with the provided tip, 
+    // displaying the workout tip to the user.
+    resultBox.textContent = tip;
+
+    // This code removes the "d-none" class from the "Get Another Tip" button to make it visible, 
+    // so the user can click it to get another workout tip.
+    anotherTipBtn.classList.remove("d-none");
+}
+
+
+// This code exports functions to script.test.js for testing. I had to add this code as the app wasn't working in the browser without it, and 
+// I needed to export the functions for testing in script.test.js.
+if (typeof module !== "undefined") {
+    module.exports = { handleMenuClick, getWorkoutPlans, workoutPlans, displayWorkoutPlan, workoutPlansEventListeners, calculateVolume, getPerformanceFeedback, processWorkoutInput, displayWorkoutResults, handleWorkoutCalculation, displayWorkoutTip };
 }
