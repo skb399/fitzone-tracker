@@ -5,7 +5,18 @@
 //The above comment tells Jest to use the jsdom environment, which creates a fake browser environment for testing DOM manipulation and events.
 
 //The below code imports the functions from script.js for testing.
-const { handleMenuClick, getWorkoutPlans, workoutPlans, displayWorkoutPlan, workoutPlansEventListeners, calculateVolume, getPerformanceFeedback, processWorkoutInput, displayWorkoutResults, handleWorkoutCalculation, displayWorkoutTip } = require("./script");
+const { handleMenuClick,
+    getWorkoutPlans,
+    workoutPlans,
+    displayWorkoutPlan,
+    workoutPlansEventListeners,
+    calculateVolume,
+    getPerformanceFeedback,
+    processWorkoutInput,
+    displayWorkoutResults,
+    handleWorkoutCalculation,
+    displayWorkoutTip,
+    fetchWorkoutTip } = require("./script");
 
 // Import the whole module as an object so jest.spyOn can watch functions on it
 const script = require("./script");
@@ -501,17 +512,24 @@ test("displayWorkoutTip shows tip and reveals 'Get Another Tip' button", () => {
     expect(anotherTipBtn.classList.contains("d-none")).toBe(false);
 });
 
-// async test to check if the fetchWorkoutTip function correctly calls the Wger API and returns a tip, 
-// checking that the API connection is working.
-test("fetchWorkoutTip calls real Wger API and returns a tip", async () => {
+test("fetchWorkoutTip returns a workout tip from mocked API", async () => {
+    // Arrange: mock fetch response
+    global.fetch = jest.fn(() =>
+        // Mocked API response with a workout tip code adapted from https://www.codementor.io/@chihebnabil/complete-guide-to-mocking-fetch-in-jest-2lejnjl4bs
+        Promise.resolve({
+            // The json method returns a promise that resolves to an object with a results array containing a workout tip and description property.
+            json: () =>
+                Promise.resolve({
+                    results: [
+                        { description: "Test workout tip" }
+                    ]
+                })
+        })
+    );
 
-    // Act: call the function to simulate fetching a workout tip from the Wger API
-    const response = await fetch("https://wger.de/api/v2/exerciseinfo/?limit=1");
+    // Act: call the function to fetch a workout tip
+    const result = await fetchWorkoutTip();
 
-    // Assert: the response should be successful and contain a tip in the expected format
-    const data = await response.json();
-
-    // Expecting - the API should return a successful response with a results array containing at least one tip, and the tip should have a description field
-    expect(data.results[0].description).toBeDefined();
-
+    // Assert: the result should be the description of the workout tip from the mocked API response
+    expect(result).toBe("Test workout tip");
 });

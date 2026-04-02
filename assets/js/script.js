@@ -384,9 +384,26 @@ function displayWorkoutTip(tip) {
     anotherTipBtn.classList.remove("d-none");
 }
 
+/** This function fetches a workout tip from an API and displays it using the displayWorkoutTip function. */
+function fetchWorkoutTip() {
+}
+
 
 // This code exports functions to script.test.js for testing. I had to add this code as the app wasn't working in the browser without it, and 
 // I needed to export the functions for testing in script.test.js.
 if (typeof module !== "undefined") {
-    module.exports = { handleMenuClick, getWorkoutPlans, workoutPlans, displayWorkoutPlan, workoutPlansEventListeners, calculateVolume, getPerformanceFeedback, processWorkoutInput, displayWorkoutResults, handleWorkoutCalculation, displayWorkoutTip };
+    module.exports = {
+        handleMenuClick,
+        getWorkoutPlans,
+        workoutPlans,
+        displayWorkoutPlan,
+        workoutPlansEventListeners,
+        calculateVolume,
+        getPerformanceFeedback,
+        processWorkoutInput,
+        displayWorkoutResults,
+        handleWorkoutCalculation,
+        displayWorkoutTip,
+        fetchWorkoutTip
+    };
 }
