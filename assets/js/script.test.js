@@ -490,3 +490,25 @@ test("handleMenuClick shows workout tips section and hides other sections", () =
     expect(workoutPlansSection.classList.contains("d-none")).toBe(true);
     expect(recordWorkoutSection.classList.contains("d-none")).toBe(true);
 });
+
+test("displayWorkoutTip shows tip and reveals 'Get Another Tip' button", () => {
+    // I created a fake DOM structure for the test as it wasn't working with the actual HTML file. 
+    // This allows me to test the function in isolation.
+    document.body.innerHTML = `
+        <div id="tip-result-box">Click the button to get a workout tip.</div>
+        <button id="get-another-tip-btn" class="d-none"></button>
+    `;
+
+    // Act: call the function to simulate displaying a workout tip
+    displayWorkoutTip("Stay hydrated during your workout");
+
+    // Assert: the tip result box should be updated with the provided workout tip
+    const resultBox = document.getElementById("tip-result-box");
+    expect(resultBox.textContent).toBe("Stay hydrated during your workout");
+
+    // Assert: the "Get Another Tip" button should now be visible (d-none class removed) 
+    // so the user can click it to get another tip if they want
+    const anotherTipBtn = document.getElementById("get-another-tip-btn");
+    expect(anotherTipBtn.classList.contains("d-none")).toBe(false);
+});
+
