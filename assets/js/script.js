@@ -384,14 +384,24 @@ function displayWorkoutTip(tip) {
     anotherTipBtn.classList.remove("d-none");
 }
 
-/** This function fetches a workout tip from an API and displays it using the displayWorkoutTip function. */
-//async function needed as it has to wait for the response from the API before it can display the tip
+// I defined the API URL as a constant at the top of the file so that it can be easily updated in one place if needed, and to improve readability by giving it a descriptive name.
+const API_URL = "https://wger.de/api/v2/exerciseinfo/?limit=1";
+
+/** This function fetches a workout tip from an API and returns the description.*/
+//async function needed as it has do an asynchronous API request, it has to wait for the response from the 
+// API before it can fetch the data
 async function fetchWorkoutTip() {
     // await is used to wait for the fetch request to complete
-    const response = await fetch("https://wger.de/api/v2/exerciseinfo/?limit=1");
-    // This code checks if the response has been retrieved and converted to JSON.
+    const response = await fetch(API_URL);
+    // This code converts the response to JSON.
     const data = await response.json();
-    // This code returns the description of the first result in the API response if available, to be displayed as a workout tip.
+
+    // This if statement checks if the API response contains results and if the results array is not empty. 
+    // If there are no results, it returns a message that no workout tip is available. 
+    if (!data.results || data.results.length === 0) {
+        return "No workout tip available.";
+    }
+    // This code returns the description of the first result in the API response.
     return data.results[0].description;
 }
 
