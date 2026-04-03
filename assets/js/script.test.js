@@ -499,13 +499,20 @@ test("displayWorkoutTip shows tip and reveals 'Get Another Tip' button", () => {
         <div id="tip-result-box">Click the button to get a workout tip.</div>
         <button id="get-another-tip-btn" class="d-none"></button>
     `;
+    // Arrange: I had to update this test as the displayWorkoutTip function was updated to expect 
+    // an object with name and description properties instead of a string, so I created a sample tip object to pass to the function for testing.
+    const tip = {
+        name: "Hydration Tip",
+        description: "Stay hydrated during your workout"
+    };
 
     // Act: call the function to simulate displaying a workout tip
-    displayWorkoutTip("Stay hydrated during your workout");
+    displayWorkoutTip(tip);
 
     // Assert: the tip result box should be updated with the provided workout tip
     const resultBox = document.getElementById("tip-result-box");
-    expect(resultBox.textContent).toBe("Stay hydrated during your workout");
+    expect(resultBox.innerHTML).toContain("Hydration Tip");
+    expect(resultBox.innerHTML).toContain("Stay hydrated during your workout");
 
     // Assert: the "Get Another Tip" button should now be visible (d-none class removed) 
     // so the user can click it to get another tip if they want
@@ -519,20 +526,30 @@ test("fetchWorkoutTip returns a workout tip from mocked API", async () => {
         // Mocked API response with a workout tip code adapted from https://www.codementor.io/@chihebnabil/complete-guide-to-mocking-fetch-in-jest-2lejnjl4bs
         Promise.resolve({
             // The json method returns a promise that resolves to an object with a results array containing a workout tip and description property.
-            json: () =>
-                Promise.resolve({
-                    results: [
-                        { description: "Test workout tip" }
-                    ]
-                })
+            json: () => Promise.resolve({
+                results: [
+                    {
+                        translations: [
+                            {
+                                language: 2,
+                                name: "Bear Crawl",
+                                description: "Test workout tip"
+                            }
+                        ]
+                    }
+                ]
+            })
         })
     );
 
     // Act: call the function to fetch a workout tip
     const result = await fetchWorkoutTip();
 
-    // Assert: the result should be the description of the workout tip from the mocked API response
-    expect(result).toBe("Test workout tip");
+    // Assert: the result should return the workout tip object with name and description from the mocked API response
+    expect(result).toEqual({
+        name: "Bear Crawl",
+        description: "Test workout tip"
+    });
 });
 
 test("clicking get workout tip button fetches and displays a workout tip", async () => {
@@ -549,7 +566,15 @@ test("clicking get workout tip button fetches and displays a workout tip", async
             json: () =>
                 Promise.resolve({
                     results: [
-                        { description: "Test workout tip from button click" }
+                        {
+                            translations: [
+                                {
+                                    language: 2,
+                                    name: "Bear Crawl",
+                                    description: "Test workout tip from button click"
+                                }
+                            ]
+                        }
                     ]
                 })
         })
@@ -570,5 +595,7 @@ test("clicking get workout tip button fetches and displays a workout tip", async
 
     // Assert: the tip result box should be updated with the workout tip from the mocked API 
     // response when the get workout tip button is clicked
-    expect(document.getElementById("tip-result-box").textContent).toBe("Test workout tip from button click");
+    const resultBox = document.getElementById("tip-result-box");
+    expect(resultBox.innerHTML).toContain("Bear Crawl");
+    expect(resultBox.innerHTML).toContain("Test workout tip from button click");
 });

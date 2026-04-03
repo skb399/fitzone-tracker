@@ -392,13 +392,21 @@ function displayWorkoutTip(tip) {
     const resultBox = document.getElementById("tip-result-box");
     const anotherTipBtn = document.getElementById("get-another-tip-btn");
 
+    // This if statement checks if the tip result box element exists in the DOM before trying to update it. 
+    // If it doesn't exist, it returns sooner to prevent errors.
+    if (!resultBox) return;
+
     // This code updates the text content of the tip result box with the provided tip, 
     // displaying the workout tip to the user.
-    resultBox.innerHTML = tip;
+    resultBox.innerHTML = `
+        <h5 class="mb-3">${tip.name}</h5>
+        ${tip.description}
+    `;
 
-    // This code removes the "d-none" class from the "Get Another Tip" button to make it visible, 
-    // so the user can click it to get another workout tip.
-    anotherTipBtn.classList.remove("d-none");
+    // This if statement checks if the "Get Another Tip" button element exists in the DOM before trying to update it.
+    if (anotherTipBtn) {
+        anotherTipBtn.classList.remove("d-none");
+    }
 }
 
 // I defined the API URL as a constant at the top of the file so that it can be easily updated in one place if needed, and to improve readability by giving it a descriptive name.
@@ -432,14 +440,24 @@ async function fetchWorkoutTip() {
 
     // Find English translation
     const englishTranslation = exercise.translations.find(
+        // This code looks for the English translation of the exercise description in the translations array. 
+        // It checks for a translation with language ID 2 (English) and so the description is not empty.
         (t) => t.language === 2 && t.description && t.description.trim() !== ""
     );
 
+    // If an English translation with a non-empty description is found, return the name and description. 
     if (englishTranslation) {
-        return englishTranslation.description;
+        return {
+            name: englishTranslation.name,
+            description: englishTranslation.description
+        };
     }
 
-    return "No English workout tip available right now.";
+    // If no valid English translation is found, return a message indicating that no workout tip is available.
+    return {
+        name: "Workout Tip",
+        description: "No workout tip available right now."
+    };
 }
 
 /** This function sets up the event listeners for the workout tips section. */
