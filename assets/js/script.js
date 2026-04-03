@@ -39,6 +39,13 @@ function handleMenuClick(sectionId) {
         document.getElementById("menu-section").classList.remove("d-none");
     }
 
+    // This else if statement shows the record workout section and hides the menu section 
+    // when the record workout button is clicked in the menu section.
+    else if (sectionId === "return-menu-from-record-btn") {
+        document.getElementById("record-workout-section").classList.add("d-none");
+        document.getElementById("menu-section").classList.remove("d-none");
+    }
+
     //This else if statement shows the workout tips section and hides the menu section 
     // when the workout tips button is clicked.
     else if (sectionId === "workout-tips") {
@@ -82,6 +89,7 @@ function handleMenuClick(sectionId) {
 // These call the handleMenuClick function with the correct section ID when a menu button is clicked.
 const workoutPlansBtn = document.getElementById("menu-workout-plans-btn");
 const recordWorkoutBtn = document.getElementById("menu-record-workout-btn");
+const returnMenuFromRecordWorkoutBtn = document.getElementById("return-menu-from-record-btn");
 const workoutTipsBtn = document.getElementById("menu-workout-tips-btn");
 const returnMenuFromWorkoutPlansBtn = document.getElementById("workout-plans-back-btn");
 // This variable is used in the handleMenuClick function to show the workout tips section when the workout tips button is clicked.
@@ -99,6 +107,12 @@ if (workoutPlansBtn) {
 if (recordWorkoutBtn) {
     recordWorkoutBtn.addEventListener("click", function () {
         handleMenuClick("record-workout");
+    });
+}
+
+if (returnMenuFromRecordWorkoutBtn) {
+    returnMenuFromRecordWorkoutBtn.addEventListener("click", function () {
+        handleMenuClick("return-menu-from-record-btn");
     });
 }
 
