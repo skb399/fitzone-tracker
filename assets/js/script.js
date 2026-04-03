@@ -100,8 +100,7 @@ const recordWorkoutBtn = document.getElementById("menu-record-workout-btn");
 const returnMenuFromRecordWorkoutBtn = document.getElementById("return-menu-from-record-btn");
 const workoutTipsBtn = document.getElementById("menu-workout-tips-btn");
 const returnMenuFromWorkoutPlansBtn = document.getElementById("workout-plans-back-btn");
-// This variable is used in the handleMenuClick function to show the workout tips section when the workout tips button is clicked.
-const workoutTipsSection = document.getElementById("workout-tips-section");
+
 // This variable is used in the handleMenuClick function to show the menu section and hide the workout tips section when the back
 // button in the workout tips section is clicked.
 const returnMenuFromWorkoutTipsBtn = document.getElementById("return-menu-from-tips-btn");

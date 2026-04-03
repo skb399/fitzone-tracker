@@ -7,6 +7,15 @@ body {
 body {
     display: flex;
     flex-direction: column;
+    background-color: var(--secondary-color);
+    color: var(--highlight-color);
+    font-family: var(--secondary-font);
+    background-image: url("../images/hero.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* Removed fixed for better mobile responsiveness */
+    background-attachment: scroll;
 }
 
 main {
@@ -21,34 +30,13 @@ main {
     --primary-font: "Bebas Neue", sans-serif;
     --secondary-font: "Inter", sans-serif;
     --primary-color: #D7263D;
-    /* Deep red */
     --secondary-color: #0F0F0F;
-    /* Charcoal Black */
     --highlight-color: #FFFFFF;
-    /* Off White */
     --light-highlight: #6E6E6E;
-    /* Steel Gray */
 }
 
-/*GLOBAL STYLING*/
+/* GLOBAL STYLING */
 
-/* Body styling */
-body {
-    background-color: var(--secondary-color);
-    color: var(--highlight-color);
-    font-family: var(--secondary-font);
-}
-
-/* Global background image for all sections */
-body {
-    background-image: url("../images/hero.webp");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}
-
-/* Global headings styling (FitZone branding) */
 h1,
 h2,
 h3 {
@@ -62,39 +50,41 @@ h3 {
     text-align: center;
     font-weight: bold;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+    line-height: 1.2;
+    word-break: break-word;
 }
 
-/* Remove borders inside cards */
 .card h2,
 .card h3 {
     border: none;
     background: none;
     text-shadow: none;
+    margin-top: 0;
 }
 
-/* Paragraph styling */
 p {
     font-family: var(--secondary-font);
     color: var(--highlight-color);
     margin: 20px 0;
     text-align: center;
     font-weight: 500;
+    word-wrap: break-word;
 }
-
-
 
 /* CARDS */
 
 .card {
-    background-color: var(--primary-color);
+    background-color: rgba(215, 38, 61, 0.95);
     border: 1px solid var(--highlight-color);
     border-radius: 0.75rem;
 }
 
+.card-body {
+    padding: 1.25rem;
+}
 
 /* BUTTONS */
 
-/* Global button style */
 .btn {
     border-radius: 0.75rem;
     font-weight: bold;
@@ -102,8 +92,9 @@ p {
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease-in-out;
+    white-space: normal;
+    text-align: center;
 }
-
 
 .btn-dark {
     background-color: #000000;
@@ -111,7 +102,6 @@ p {
     color: var(--highlight-color);
 }
 
-/* Hover state */
 .btn-dark:hover,
 .btn-dark:focus {
     background-color: var(--light-highlight);
@@ -132,7 +122,7 @@ p {
     text-align: center;
 }
 
-/* Workout plan display text - Makes it bold and white for better readability, with text centered */
+/* Workout plan display text */
 #workout-plan-display,
 #workout-plan-display p,
 #workout-plan-display li {
@@ -141,17 +131,27 @@ p {
     text-align: center;
 }
 
+#workout-plan-display ul {
+    padding-left: 1rem;
+    margin-bottom: 0;
+}
+
+#workout-plan-display li {
+    margin-bottom: 0.5rem;
+    list-style-position: inside;
+}
+
 /* RESULTS + FEEDBACK */
 
-/* Feedback message styling */
 #feedback-message {
     font-weight: bold;
     border-radius: 0.5rem;
 }
 
-/* Feedback image */
 #feedback-image {
     border-radius: 0.75rem;
+    max-width: 100%;
+    height: auto;
 }
 
 /* WORKOUT TIP BOX */
@@ -160,11 +160,14 @@ p {
     background-color: rgba(0, 0, 0, 0.6);
     color: var(--highlight-color);
     font-weight: bold;
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* SECTION TRANSITIONS */
 
-/* Smooth fade when switching sections */
 section {
     transition: opacity 0.3s ease-in-out;
 }
@@ -175,9 +178,85 @@ footer {
     background-color: var(--primary-color);
     color: var(--primary-color);
     text-align: center;
+    padding: 1rem;
+}
+
+.logo {
+    max-width: 75px;
+    height: auto;
 }
 
 /* RESPONSIVE MEDIA QUERIES */
+
+@media (max-width: 991.98px) {
+    section {
+        padding-top: 3rem !important;
+        padding-bottom: 3rem !important;
+    }
+
+    .card-body {
+        padding: 1rem;
+    }
+
+    .btn-lg {
+        font-size: 1rem;
+        padding: 0.75rem 1rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    body {
+        background-attachment: scroll;
+        background-position: center top;
+    }
+
+    h1 {
+        font-size: 2rem;
+        padding: 0.5rem 0.75rem;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+        padding: 0.5rem 0.75rem;
+    }
+
+    h3 {
+        font-size: 1.25rem;
+        padding: 0.4rem 0.7rem;
+    }
+
+    p {
+        font-size: 0.95rem;
+        margin: 12px 0;
+    }
+
+    .card {
+        margin-bottom: 1rem;
+    }
+
+    .card-body {
+        padding: 1rem 0.9rem;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    #workout-plans-section .mt-4.text-center {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    #tip-result-box {
+        padding: 1rem;
+        min-height: 140px;
+    }
+
+    .logo {
+        max-width: 60px;
+    }
+}
 
 @media (min-width: 1600px) {
     body {
