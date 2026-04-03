@@ -135,15 +135,14 @@ if (recordNewWorkoutBtn) {
         document.getElementById("feedback-image").classList.add("d-none");
     });
 
-    // This code adds an event listener to the back button in the workout tips section. When clicked, it shows the menu section and hides 
-    // the workout tips section, allowing the user to return to the menu from the workout tips section.
-    if (returnMenuFromWorkoutTipsBtn) {
-        returnMenuFromWorkoutTipsBtn.addEventListener("click", function () {
-            handleMenuClick("return-menu-from-tips-btn");
-        });
-    }
 }
-
+// This code adds an event listener to the back button in the workout tips section. When clicked, it shows the menu section and hides 
+// the workout tips section, allowing the user to return to the menu from the workout tips section.
+if (returnMenuFromWorkoutTipsBtn) {
+    returnMenuFromWorkoutTipsBtn.addEventListener("click", function () {
+        handleMenuClick("return-menu-from-tips-btn");
+    });
+}
 
 
 // -------------------------------
@@ -395,7 +394,7 @@ function displayWorkoutTip(tip) {
 
     // This code updates the text content of the tip result box with the provided tip, 
     // displaying the workout tip to the user.
-    resultBox.textContent = tip;
+    resultBox.innerHTML = tip;
 
     // This code removes the "d-none" class from the "Get Another Tip" button to make it visible, 
     // so the user can click it to get another workout tip.
@@ -409,8 +408,11 @@ const API_URL = "https://wger.de/api/v2/exerciseinfo/?limit=1";
 //async function needed as it has do an asynchronous API request, it has to wait for the response from the 
 // API before it can fetch the data
 async function fetchWorkoutTip() {
-    // await is used to wait for the fetch request to complete
-    const response = await fetch(API_URL);
+    // Generate a random number so a different exercise can be fetched each time
+    const randomOffset = Math.floor(Math.random() * 200);
+
+    // Build the API URL using a random offset and a limit of 1, because we only want to fetch one exercise tip at a time.
+    const response = await fetch(`https://wger.de/api/v2/exerciseinfo/?limit=1&offset=${randomOffset}`);
 
     // This code converts the response to JSON.
     const data = await response.json();
@@ -428,17 +430,16 @@ async function fetchWorkoutTip() {
         return "No workout tip available.";
     }
 
-    // Find the English translation (language 2 = English)
+    // Find English translation
     const englishTranslation = exercise.translations.find(
-        (t) => t.language === 2
+        (t) => t.language === 2 && t.description && t.description.trim() !== ""
     );
 
-    // If English exists, return it, otherwise fallback to first translation
     if (englishTranslation) {
         return englishTranslation.description;
-    } else {
-        return exercise.translations[0].description;
     }
+
+    return "No English workout tip available right now.";
 }
 
 /** This function sets up the event listeners for the workout tips section. */
