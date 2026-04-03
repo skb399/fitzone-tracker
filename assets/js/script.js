@@ -378,11 +378,15 @@ function displayWorkoutResults(exercise, result) {
         imageSrc = "assets/images/feedback-high-effort.webp";
     }
 
-    // Update and show the feedback image - the src is updated based on the feedback, and the d-none class is removed to display the image, 
-    // giving visual feedback to the user based on workout performance.
-    image.setAttribute("src", imageSrc);
-    image.classList.remove("d-none");
-    image.setAttribute("alt", `${result.feedback} workout feedback`);
+    // Update and show the feedback image only if a valid image source has been assigned.
+    // If there is no valid image source, the image remains hidden to avoid showing a broken image icon.
+    if (imageSrc) {
+        image.setAttribute("src", imageSrc);
+        image.classList.remove("d-none");
+        image.setAttribute("alt", `${result.feedback} workout feedback`);
+    } else {
+        image.classList.add("d-none");
+    }
 }
 
 /** This function handles the workout calculation by retrieving user input, processing it, and displaying the results. */
@@ -392,11 +396,25 @@ function handleWorkoutCalculation() {
     const sets = document.getElementById("sets").value;
     const reps = document.getElementById("reps").value;
     const weight = document.getElementById("weight").value;
+    const errorMessage = document.getElementById("form-error-message");
 
     // Process the workout input using the processWorkoutInput function to calculate volume and get feedback 
     const result = processWorkoutInput(sets, reps, weight);
 
-    // Display the workout results in the DOM using the displayWorkoutResults function, this shows the exercise name and the results.
+    // If input is invalid, show error message and stop
+    if (result.feedback === "Please enter valid numbers") {
+        if (errorMessage) {
+            errorMessage.textContent = "Please enter valid positive numbers for sets, reps, and weight.";
+        }
+        return;
+    }
+
+    // Clear any previous error message
+    if (errorMessage) {
+        errorMessage.textContent = "";
+    }
+
+    // Display the workout results in the DOM using the displayWorkoutResults function
     displayWorkoutResults(exercise, result);
 }
 

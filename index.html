@@ -22,7 +22,7 @@
             <div class="container text-center">
                 <div class="row justify-content-center">
                     <div class="col-12 col-lg-8">
-                        <h1 class="mb-3">FitZone Tracker</h1>
+                        <h1> FitZone Tracker</h1>
                         <p>
                             Welcome to FitZone Tracker. Choose a feature below to view workout plans,
                             record your workout, or get a workout tip.
@@ -34,7 +34,7 @@
                     <div class="col-12 col-md-4">
                         <div class="card h-100 shadow-sm">
                             <div class="card-body">
-                                <h2 class="h4">Workout Plans</h2>
+                                <h2>Workout Plans</h2>
                                 <p>View a Push, Pull, or Legs workout plan.</p>
                                 <button id="menu-workout-plans-btn" class="btn btn-dark" type="button">
                                     View Workout Plans
@@ -46,7 +46,7 @@
                     <div class="col-12 col-md-4">
                         <div class="card h-100 shadow-sm">
                             <div class="card-body">
-                                <h2 class="h4">Record Workout</h2>
+                                <h2>Record Workout</h2>
                                 <p>Log your sets, reps, and optional weight.</p>
                                 <button id="menu-record-workout-btn" class="btn btn-dark" type="button">
                                     Record Workout
@@ -58,7 +58,7 @@
                     <div class="col-12 col-md-4">
                         <div class="card h-100 shadow-sm">
                             <div class="card-body">
-                                <h2 class="h4">Workout Tips</h2>
+                                <h2>Workout Tips</h2>
                                 <p>Fetch a random workout tip from the API.</p>
                                 <button id="menu-workout-tips-btn" class="btn btn-dark" type="button">
                                     Get Workout Tips
@@ -102,19 +102,15 @@
                     <div class="col-12 col-lg-8">
                         <div class="card shadow-sm">
                             <div class="card-body">
-                                <h3 class="h4">Workout Plan Display</h3>
+                                <h3>Workout Plan Display</h3>
                                 <div id="workout-plan-display">
                                     <p>Select a workout button to load a workout plan.</p>
                                 </div>
-
-                                <div class="mt-4 d-grid gap-2 d-md-block">
-                                    <button id="plan-to-record-btn" class="btn btn-primary d-none" type="button">
-                                        Record Workout
-                                    </button>
-                                    <button id="workout-plans-back-btn" class="btn btn-secondary" type="button">
+                                <div class="mt-4 text-center">
+                                    <button id="workout-plans-back-btn" class="btn btn-dark" type="button">
                                         Return to Menu
                                     </button>
-                                    <button id="workout-plans-record-btn" class="btn btn-secondary" type="button">
+                                    <button id="workout-plans-record-btn" class="btn btn-dark" type="button">
                                         Record Workout
                                     </button>
                                 </div>
@@ -152,17 +148,17 @@
 
                                     <div class="mb-3">
                                         <label for="sets" class="form-label">Sets</label>
-                                        <input type="number" id="sets" class="form-control" min="1" required>
+                                        <input type="text" id="sets" class="form-control" min="1" required>
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="reps" class="form-label">Reps</label>
-                                        <input type="number" id="reps" class="form-control" min="1" required>
+                                        <input type="text" id="reps" class="form-control" min="1" required>
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="weight" class="form-label">Weight</label>
-                                        <input type="number" id="weight" class="form-control" min="1" required>
+                                        <input type="text" id="weight" class="form-control" min="1" required>
                                     </div>
 
                                     <!-- Validation / error message area -->
@@ -172,11 +168,10 @@
                                         <button id="calculate-workout-btn" class="btn btn-dark" type="submit">
                                             Calculate Performance
                                         </button>
-                                        <button id="reset-workout-btn" class="btn btn-outline-dark" type="reset">
+                                        <button id="reset-workout-btn" class="btn btn-dark" type="reset">
                                             Reset
                                         </button>
-                                        <button id="return-menu-from-record-btn" class="btn btn-secondary"
-                                            type="button">
+                                        <button id="return-menu-from-record-btn" class="btn btn-dark" type="button">
                                             Return to Menu
                                         </button>
                                     </div>
@@ -224,7 +219,7 @@
                                     <button id="record-new-workout-btn" class="btn btn-dark" type="button">
                                         Record New Workout
                                     </button>
-                                    <button id="return-menu-from-results-btn" class="btn btn-secondary" type="button">
+                                    <button id="return-menu-from-results-btn" class="btn btn-dark" type="button">
                                         Return to Menu
                                     </button>
                                 </div>
@@ -261,11 +256,11 @@
 
                                 <div id="tip-error-message" class="text-danger mb-3"></div>
 
-                                <div class="d-grid gap-2">
-                                    <button id="get-another-tip-btn" class="btn btn-outline-dark d-none" type="button">
+                                <div class="text-center">
+                                    <button id="get-another-tip-btn" class="btn btn-dark d-none mb-3" type="button">
                                         Get Another Tip
                                     </button>
-                                    <button id="return-menu-from-tips-btn" class="btn btn-secondary" type="button">
+                                    <button id="return-menu-from-tips-btn" class="btn btn-dark mb-3" type="button">
                                         Return to Menu
                                     </button>
                                 </div>
@@ -277,7 +272,7 @@
         </section>
 
         <!-- Footer -->
-        <footer class="bg-dark text-white py-3 mt-auto">
+        <footer class="py-3 mt-auto">
             <div class="container text-center">
                 <p class="mb-0"> 2026 FitZone ltd</p>
             </div>

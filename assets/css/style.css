@@ -1,3 +1,4 @@
+/* Global styles for FitZone Tracker */
 html,
 body {
     height: 100%;
@@ -10,4 +11,175 @@ body {
 
 main {
     flex: 1;
+}
+
+/* Google fonts import */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+/* CSS Variables */
+:root {
+    --primary-font: "Bebas Neue", sans-serif;
+    --secondary-font: "Inter", sans-serif;
+    --primary-color: #D7263D;
+    /* Deep red */
+    --secondary-color: #0F0F0F;
+    /* Charcoal Black */
+    --highlight-color: #FFFFFF;
+    /* Off White */
+    --light-highlight: #6E6E6E;
+    /* Steel Gray */
+}
+
+/*GLOBAL STYLING*/
+
+/* Body styling */
+body {
+    background-color: var(--secondary-color);
+    color: var(--highlight-color);
+    font-family: var(--secondary-font);
+}
+
+/* Global headings styling (FitZone branding) */
+h1,
+h2,
+h3 {
+    font-family: var(--primary-font);
+    color: var(--highlight-color);
+    background-color: var(--primary-color);
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--highlight-color);
+    border-radius: 0.75rem;
+    margin: 20px 0;
+    text-align: center;
+    font-weight: bold;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+/* Remove borders inside cards */
+.card h2,
+.card h3 {
+    border: none;
+    background: none;
+    text-shadow: none;
+}
+
+/* Paragraph styling */
+p {
+    font-family: var(--secondary-font);
+    color: var(--highlight-color);
+    margin: 20px 0;
+    text-align: center;
+    font-weight: 500;
+}
+
+
+
+/* CARDS */
+
+.card {
+    background-color: var(--primary-color);
+    border: 1px solid var(--highlight-color);
+    border-radius: 0.75rem;
+}
+
+
+/* BUTTONS */
+
+/* Global button style */
+.btn {
+    border-radius: 0.75rem;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease-in-out;
+}
+
+
+.btn-dark {
+    background-color: #000000;
+    border-color: var(--primary-color);
+    color: var(--highlight-color);
+}
+
+/* Hover state */
+.btn-dark:hover,
+.btn-dark:focus {
+    background-color: var(--light-highlight);
+    border-color: #222222;
+    color: var(--secondary-color);
+    transform: scale(1.05);
+}
+
+/* FORMS */
+
+.form-control {
+    border-radius: 0.5rem;
+}
+
+#form-error-message {
+    color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Workout plan display text - Makes it bold and white for better readability, with text centered */
+#workout-plan-display,
+#workout-plan-display p,
+#workout-plan-display li {
+    color: var(--highlight-color);
+    font-weight: bold;
+    text-align: center;
+}
+
+/* RESULTS + FEEDBACK */
+
+/* Feedback message styling */
+#feedback-message {
+    font-weight: bold;
+    border-radius: 0.5rem;
+}
+
+/* Feedback image */
+#feedback-image {
+    border-radius: 0.75rem;
+}
+
+/* WORKOUT TIP BOX */
+
+#tip-result-box {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: var(--highlight-color);
+    font-weight: bold;
+}
+
+/* SECTION TRANSITIONS */
+
+/* Smooth fade when switching sections */
+section {
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* FOOTER */
+
+footer {
+    background-color: var(--primary-color);
+    color: var(--primary-color);
+    text-align: center;
+}
+
+/* RESPONSIVE MEDIA QUERIES */
+
+@media (min-width: 1600px) {
+    body {
+        font-size: 18px;
+    }
+
+    h1 {
+        font-size: 3rem;
+    }
+
+    p {
+        font-size: 1.2rem;
+    }
 }
