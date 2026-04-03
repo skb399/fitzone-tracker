@@ -593,7 +593,7 @@ test("clicking get workout tip button fetches and displays a workout tip", async
     await new Promise(resolve => setTimeout(resolve, 0));
 
 
-    // Assert: the tip result box should be updated with the workout tip from the mocked API 
+    // Assert: the tip result box should be updated with the workout tip name and description from the mocked API 
     // response when the get workout tip button is clicked
     const resultBox = document.getElementById("tip-result-box");
     expect(resultBox.innerHTML).toContain("Bear Crawl");
