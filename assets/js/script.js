@@ -46,6 +46,13 @@ function handleMenuClick(sectionId) {
         document.getElementById("menu-section").classList.remove("d-none");
     }
 
+    // This else if statement shows the menu section and hides the results section when the 
+    // return to menu button in the results section is clicked.
+    else if (sectionId === "return-menu-from-results-btn") {
+        document.getElementById("results-section").classList.add("d-none");
+        document.getElementById("menu-section").classList.remove("d-none");
+    }
+
     //This else if statement shows the workout tips section and hides the menu section 
     // when the workout tips button is clicked.
     else if (sectionId === "workout-tips") {
@@ -54,6 +61,7 @@ function handleMenuClick(sectionId) {
         const plansSection = document.getElementById("workout-plans-section");
         const recordSection = document.getElementById("record-workout-section");
         const menuSection = document.getElementById("menu-section");
+
 
         // Show workout tips section and hide other visible sections
         tipsSection.classList.remove("d-none");
@@ -97,6 +105,9 @@ const workoutTipsSection = document.getElementById("workout-tips-section");
 // This variable is used in the handleMenuClick function to show the menu section and hide the workout tips section when the back
 // button in the workout tips section is clicked.
 const returnMenuFromWorkoutTipsBtn = document.getElementById("return-menu-from-tips-btn");
+// This variable is used in the handleMenuClick function to show the menu section and hide the results section when 
+// the return to menu button in the results section is clicked, after results are calculated.
+const returnMenuFromResultsBtn = document.getElementById("return-menu-from-results-btn");
 
 if (workoutPlansBtn) {
     workoutPlansBtn.addEventListener("click", function () {
@@ -125,6 +136,14 @@ if (returnMenuFromWorkoutPlansBtn) {
     returnMenuFromWorkoutPlansBtn.addEventListener("click", function () {
         // Show menu section and hide workout plans section by reusing the handleMenuClick function with the correct section ID.
         handleMenuClick("return-menu-from-workout-plans");
+    });
+}
+
+// This code adds an event listener to the return to menu button in the results section. When clicked, it shows the menu section 
+// and hides the results section, after the user has viewed their workout results.
+if (returnMenuFromResultsBtn) {
+    returnMenuFromResultsBtn.addEventListener("click", function () {
+        handleMenuClick("return-menu-from-results-btn");
     });
 }
 
@@ -267,6 +286,7 @@ function getPerformanceFeedback(volume) {
     const lowThreshold = 1000;
     const moderateThreshold = 3000;
 
+    // This if statement checks the calculated volume against the performance thresholds to determine the level of effort.
     if (volume < lowThreshold) {
         return "Low effort";
     } else if (volume < moderateThreshold) {
