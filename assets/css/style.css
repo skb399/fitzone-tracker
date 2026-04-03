@@ -14,7 +14,6 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    /* Removed fixed for better mobile responsiveness */
     background-attachment: scroll;
 }
 
@@ -51,7 +50,6 @@ h3 {
     font-weight: bold;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
     line-height: 1.2;
-    word-break: break-word;
 }
 
 .card h2,
@@ -116,6 +114,7 @@ p {
     border-radius: 0.5rem;
 }
 
+/* Form error message styling */
 #form-error-message {
     color: #ffffff;
     font-weight: bold;

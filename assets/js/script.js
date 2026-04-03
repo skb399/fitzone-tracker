@@ -420,25 +420,6 @@ function handleWorkoutCalculation() {
     displayWorkoutResults(exercise, result);
 }
 
-
-// JQUERIES - These are placed at the bottom of the js file as they involve DOM manipulation, the DOM needs to be fully loaded before 
-// the jQuery code can interact with the elements, otherwise it would not work as the elements would not be found.
-
-// This code checks if jQuery is loaded before trying to use it, preventing errors if jQuery is not available. 
-if (typeof $ !== "undefined") {
-    // Document ready function so that the DOM is fully loaded before attaching event listeners. This is required for jQuery to work correctly, 
-    // as it needs to interact with DOM elements.
-    $(document).ready(function () {
-        // This code uses jQuery to listen for the submit event on the workout form with the ID "workout-form". 
-        $("#workout-form").on("submit", function (e) {
-            // When the form is submitted e.preventDefault() is used to prevent the default form submission behavior (it would usually refresh the page).
-            e.preventDefault();
-            // Then the handleWorkoutCalculation function is called to process the workout input and display the results without refreshing the page.
-            handleWorkoutCalculation();
-        });
-    });
-}
-
 /** This function displays a workout tip in the tip result box and reveals the "Get Another Tip" button. */
 function displayWorkoutTip(tip) {
     // Get the tip result box and "Get Another Tip" button elements from the DOM to update them with the
@@ -541,6 +522,24 @@ function workoutTipsEventListeners() {
             displayWorkoutTip(tip);
         });
     }
+}
+
+// JQUERIES - These are placed at the bottom of the js file as they involve DOM manipulation, the DOM needs to be fully loaded before 
+// the jQuery code can interact with the elements, otherwise it would not work as the elements would not be found.
+
+// This code checks if jQuery is loaded before trying to use it, preventing errors if jQuery is not available. 
+if (typeof $ !== "undefined") {
+    // Document ready function so that the DOM is fully loaded before attaching event listeners. This is required for jQuery to work correctly, 
+    // as it needs to interact with DOM elements.
+    $(document).ready(function () {
+        // This code uses jQuery to listen for the submit event on the workout form with the ID "workout-form". 
+        $("#workout-form").on("submit", function (e) {
+            // When the form is submitted e.preventDefault() is used to prevent the default form submission behavior (it would usually refresh the page).
+            e.preventDefault();
+            // Then the handleWorkoutCalculation function is called to process the workout input and display the results without refreshing the page.
+            handleWorkoutCalculation();
+        });
+    });
 }
 
 // This code exports functions to script.test.js for testing. I had to add this code as the app wasn't working in the browser without it, and 
