@@ -65,6 +65,12 @@ function handleMenuClick(sectionId) {
             recordSection.classList.add("d-none");
         }
     }
+    // This else if statement makes the return to menu button in the workout tips section show the menu
+    //  section and hide the workout tips section when clicked.
+    else if (sectionId === "return-menu-from-tips-btn") {
+        document.getElementById("workout-tips-section").classList.add("d-none");
+        document.getElementById("menu-section").classList.remove("d-none");
+    }
 };
 
 
@@ -80,6 +86,9 @@ const workoutTipsBtn = document.getElementById("menu-workout-tips-btn");
 const returnMenuFromWorkoutPlansBtn = document.getElementById("workout-plans-back-btn");
 // This variable is used in the handleMenuClick function to show the workout tips section when the workout tips button is clicked.
 const workoutTipsSection = document.getElementById("workout-tips-section");
+// This variable is used in the handleMenuClick function to show the menu section and hide the workout tips section when the back
+// button in the workout tips section is clicked.
+const returnMenuFromWorkoutTipsBtn = document.getElementById("return-menu-from-tips-btn");
 
 if (workoutPlansBtn) {
     workoutPlansBtn.addEventListener("click", function () {
@@ -125,6 +134,14 @@ if (recordNewWorkoutBtn) {
         // Hide the previous feedback image until a new result is calculated
         document.getElementById("feedback-image").classList.add("d-none");
     });
+
+    // This code adds an event listener to the back button in the workout tips section. When clicked, it shows the menu section and hides 
+    // the workout tips section, allowing the user to return to the menu from the workout tips section.
+    if (returnMenuFromWorkoutTipsBtn) {
+        returnMenuFromWorkoutTipsBtn.addEventListener("click", function () {
+            handleMenuClick("return-menu-from-tips-btn");
+        });
+    }
 }
 
 
