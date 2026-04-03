@@ -39,6 +39,15 @@ body {
     font-family: var(--secondary-font);
 }
 
+/* Global background image for all sections */
+body {
+    background-image: url("../images/hero.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
 /* Global headings styling (FitZone branding) */
 h1,
 h2,
