@@ -16,7 +16,8 @@ const { handleMenuClick,
     displayWorkoutResults,
     handleWorkoutCalculation,
     displayWorkoutTip,
-    fetchWorkoutTip } = require("./script");
+    fetchWorkoutTip,
+    workoutTipsEventListeners } = require("./script");
 
 // Import the whole module as an object so jest.spyOn can watch functions on it
 const script = require("./script");
@@ -560,8 +561,12 @@ test("clicking get workout tip button fetches and displays a workout tip", async
     // Act: click the get workout tip button to trigger fetching and displaying a workout tip
     document.getElementById("get-workout-tip-btn").click();
 
-    // Wait for the asynchronous fetch and display functions to finish
-    await Promise.resolve();
+    // Pause the test very briefly and let all pending async code finish first. This allows the fetchWorkoutTip 
+    // function to complete and update the DOM before we check the results. Without this the test failed because 
+    // the assertions run before the DOM was updated with the fetched workout tip.
+    // adapted from https://stackoverflow.com/questions/56302004/performance-issue-with-promises-settimeout-async-await-on-edge
+    await new Promise(resolve => setTimeout(resolve, 0));
+
 
     // Assert: the tip result box should be updated with the workout tip from the mocked API 
     // response when the get workout tip button is clicked

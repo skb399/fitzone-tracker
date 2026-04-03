@@ -222,6 +222,7 @@ function workoutPlansEventListeners() {
 // This event listener waits for the DOM content to be fully loaded before setting up the event listeners for the workout plans section.
 document.addEventListener("DOMContentLoaded", () => {
     workoutPlansEventListeners();
+    workoutTipsEventListeners();
 });
 
 /**This function calculates the total volume (performance) of a workout based on the number 
@@ -405,6 +406,35 @@ async function fetchWorkoutTip() {
     return data.results[0].description;
 }
 
+/** This function sets up the event listeners for the workout tips section. */
+function workoutTipsEventListeners() {
+    // Get the "Get Workout Tip" and "Get Another Tip" buttons from the DOM 
+    // to attach event listeners.
+    const getWorkoutTipBtn = document.getElementById("get-workout-tip-btn");
+    const getAnotherTipBtn = document.getElementById("get-another-tip-btn");
+
+    // This if statment checks if the "Get Workout Tip" button exists, and if it does, 
+    // it adds a click event listener to it. When user clicks it, it calls the fetchWorkoutTip 
+    // function to get a new workout tip, and then calls the displayWorkoutTip function to 
+    // display the tip in the DOM.
+    if (getWorkoutTipBtn) {
+        getWorkoutTipBtn.addEventListener("click", async function () {
+            const tip = await fetchWorkoutTip();
+            displayWorkoutTip(tip);
+        });
+    }
+
+    // This if statement checks if the "Get Another Tip" button exists, and if it does, it adds a click event listener to it. 
+    // When the user clicks it, it calls the fetchWorkoutTip function to get a new workout tip, and then calls the displayWorkoutTip 
+    // function to update the tip displayed in the DOM with the new tip.
+    if (getAnotherTipBtn) {
+        getAnotherTipBtn.addEventListener("click", async function () {
+            const tip = await fetchWorkoutTip();
+            displayWorkoutTip(tip);
+        });
+    }
+}
+
 // This code exports functions to script.test.js for testing. I had to add this code as the app wasn't working in the browser without it, and 
 // I needed to export the functions for testing in script.test.js.
 if (typeof module !== "undefined") {
@@ -420,6 +450,7 @@ if (typeof module !== "undefined") {
         displayWorkoutResults,
         handleWorkoutCalculation,
         displayWorkoutTip,
-        fetchWorkoutTip
+        fetchWorkoutTip,
+        workoutTipsEventListeners
     };
 }
