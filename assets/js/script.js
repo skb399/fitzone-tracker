@@ -394,6 +394,7 @@ const API_URL = "https://wger.de/api/v2/exerciseinfo/?limit=1";
 async function fetchWorkoutTip() {
     // await is used to wait for the fetch request to complete
     const response = await fetch(API_URL);
+
     // This code converts the response to JSON.
     const data = await response.json();
 
@@ -402,8 +403,25 @@ async function fetchWorkoutTip() {
     if (!data.results || data.results.length === 0) {
         return "No workout tip available.";
     }
-    // This code returns the description of the first result in the API response.
-    return data.results[0].description;
+    // Get the first exercise from the results array.
+    const exercise = data.results[0];
+
+    // Check that translations exist and contain at least one description.
+    if (!exercise.translations || exercise.translations.length === 0) {
+        return "No workout tip available.";
+    }
+
+    // Find the English translation (language 2 = English)
+    const englishTranslation = exercise.translations.find(
+        (t) => t.language === 2
+    );
+
+    // If English exists, return it, otherwise fallback to first translation
+    if (englishTranslation) {
+        return englishTranslation.description;
+    } else {
+        return exercise.translations[0].description;
+    }
 }
 
 /** This function sets up the event listeners for the workout tips section. */
