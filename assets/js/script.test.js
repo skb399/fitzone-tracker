@@ -533,3 +533,37 @@ test("fetchWorkoutTip returns a workout tip from mocked API", async () => {
     // Assert: the result should be the description of the workout tip from the mocked API response
     expect(result).toBe("Test workout tip");
 });
+
+test("clicking get workout tip button fetches and displays a workout tip", async () => {
+    // Create fake DOM to test function
+    document.body.innerHTML = `
+        <button id="get-workout-tip-btn">Get Workout Tip</button>
+        <div id="tip-result-box">Click the button to get a workout tip.</div>
+        <button id="get-another-tip-btn" class="d-none"></button>
+    `;
+
+    // Arrange: mock fetch response for fetching workout tip
+    global.fetch = jest.fn(() =>
+        Promise.resolve({
+            json: () =>
+                Promise.resolve({
+                    results: [
+                        { description: "Test workout tip from button click" }
+                    ]
+                })
+        })
+    );
+
+    // Call the function to set up the event listener for the get workout tip button
+    workoutTipsEventListeners();
+
+    // Act: click the get workout tip button to trigger fetching and displaying a workout tip
+    document.getElementById("get-workout-tip-btn").click();
+
+    // Wait for the asynchronous fetch and display functions to finish
+    await Promise.resolve();
+
+    // Assert: the tip result box should be updated with the workout tip from the mocked API 
+    // response when the get workout tip button is clicked
+    expect(document.getElementById("tip-result-box").textContent).toBe("Test workout tip from button click");
+});
