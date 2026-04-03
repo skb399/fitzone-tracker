@@ -185,18 +185,21 @@ if (returnMenuFromWorkoutTipsBtn) {
 /** This object contains sample workout plans for each workout type, which can be displayed in the workout plan section of the FitZone Tracker application. */
 const workoutPlans = {
     push: [
+        "Push Workout",
         "Bench Press - 4 sets x 8 reps",
         "Incline Dumbbell Press - 3 sets x 10 reps",
         "Shoulder Press - 3 sets x 10 reps",
         "Tricep Dips - 3 sets x 12 reps"
     ],
     pull: [
+        "Pull Workout",
         "Deadlift - 4 sets x 6 reps",
         "Lat Pulldown - 3 sets x 10 reps",
         "Seated Row - 3 sets x 10 reps",
         "Bicep Curls - 3 sets x 12 reps"
     ],
     legs: [
+        "Legs Workout",
         "Squats - 4 sets x 8 reps",
         "Leg Press - 3 sets x 10 reps",
         "Lunges - 3 sets x 12 reps",
